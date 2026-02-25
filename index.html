@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiago Parente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --card-bg: #111827;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: radial-gradient(circle at top right, #1e293b, var(--bg));
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #f8fafc, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* --- BUTTONS & LINKS --- */
+        .social-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            padding: 10px 20px;
+            border: 1px solid #334155;
+            border-radius: 50px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* --- SECTIONS --- */
+        .section-title {
+            font-size: 2rem;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 1px;
+            background: #334155;
+            flex-grow: 1;
+        }
+
+        /* --- PROJECT GRID --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid #1f2937;
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            background: #1e293b;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border: 1px solid #334155;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .project-type {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .tag {
+            background: #1f2937;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+        }
+
+        /* --- TECH STACK --- */
+        .stack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: #020617;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #1e293b;
+        }
+
+        .stack-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .stack-item span {
+            color: var(--accent);
+        }
+
+        /* --- MODAL SYSTEM --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.98);
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+            backdrop-filter: blur(12px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 24px;
+            border: 1px solid #1e293b;
+            padding: 40px;
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #1f2937;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Container for the slider and buttons */
+        .slider-container {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Hide default scrollbar but keep functionality */
+        .media-gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            /* Essential for the smooth jump */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+            padding: 10px 0;
+        }
+
+        .media-gallery::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        /* Custom Navigation Buttons */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(56, 189, 248, 0.2);
+            /* var(--accent) with opacity */
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .slider-nav:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .prev-btn {
+            left: -22px;
+        }
+
+        .next-btn {
+            right: -22px;
+        }
+
+        /* Visual indicator that more content exists */
+        .media-gallery::after {
+            content: '';
+            padding-right: 50px;
+            /* Buffer space at the end */
+        }
+
+        .media-gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            margin: 30px 0;
+            padding-bottom: 15px;
+        }
+
+        .media-gallery img,
+        .media-gallery video {
+            height: 450px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            background: #000;
+        }
+
+        .download-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(56, 189, 248, 0.05);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px dashed var(--accent);
+            margin-top: 30px;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-dim);
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .download-footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="hero-title">Tiago Parente</h1>
+            <p class="hero-subtitle">Android Developer & Creative Coder crafting high-performance mobile experiences and
+                interactive games.</p>
+            <div class="social-links">
+                <a href="mailto:t.parente.32@gmail.com" class="btn-outline">Email</a>
+                <a href="https://github.com/TiagoParente32" class="btn-outline">GitHub</a>
+                <a href="https://www.linkedin.com/in/tiagoparente32" class="btn-outline">LinkedIn</a>
+                <a href="tiago_parente_cv_2.pdf" class="btn-outline">Download CV</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <h2 class="section-title">Featured Projects</h2>
+
+        <div class="project-grid">
+
+            <div class="project-card" onclick="openModal('modal-homify')">
+                <div class="project-header">
+                    <div class="app-icon" style="background: linear-gradient(135deg, #1e293b, #334155);">
+                        <img src="icons/homify_icon.png" alt="Homify Icon"
+                            onerror="this.style.display='none'; this.parentNode.innerHTML='🏠'" />
+                    </div>
+                    <div class="project-info">
+                        <div class="project-type">Mobile Application</div>
+                        <h3>Homify</h3>
+                    </div>
+                </div>
+                <p>Manage shared chores and split expenses with roommates effortlessly.</p>
+                <div class="tag-container">
+                    <span class="tag">Flutter</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">MVVM</span>
+                </div>
+                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
+            </div>
+
+            <div class="project-card" onclick="openModal('modal-refits')">
+                <div class="project-header">
+                    <div class="app-icon" style="background: linear-gradient(135deg, #1e293b, #334155);">
+                        <img src="icons/refit_icon.png" alt="Re:Fits Icon"
+                            onerror="this.style.display='none'; this.parentNode.innerHTML='👕'" />
+                    </div>
+                    <div class="project-info">
+                        <div class="project-type">Mobile Application</div>
+                        <h3>Re:Fits</h3>
+                    </div>
+                </div>
+                <p>A high-performance personal styling manager with local-first data syncing.</p>
+                <div class="tag-container">
+                    <span class="tag">Kotlin</span>
+                    <span class="tag">Compose</span>
+                    <span class="tag">Room</span>
+                </div>
+                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
+            </div>
+
+            <div class="project-card" onclick="openModal('modal-projectv')">
+                <div class="project-header">
+                    <div class="app-icon" style="background: linear-gradient(135deg, #0ea5e9, #2563eb);">🎮</div>
+                    <div class="project-info">
+                        <div class="project-type">Game Development</div>
+                        <h3>Project V (WIP)</h3>
+                    </div>
+                </div>
+                <p>3D Roguelike with dynamic scaling and complex ability systems.</p>
+                <div class="tag-container">
+                    <span class="tag">Unity</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">Shaders</span>
+                </div>
+                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="stack-list">
+            <div class="stack-item"><span>✦</span> Kotlin</div>
+            <div class="stack-item"><span>✦</span> Jetpack Compose</div>
+            <div class="stack-item"><span>✦</span> Flutter & Dart</div>
+            <div class="stack-item"><span>✦</span> Unity & C#</div>
+            <div class="stack-item"><span>✦</span> MVVM / Clean Arch</div>
+            <div class="stack-item"><span>✦</span> Firebase</div>
+            <div class="stack-item"><span>✦</span> Room & SQLite</div>
+            <div class="stack-item"><span>✦</span> CI/CD & Docker</div>
+        </div>
+
+    </main>
+
+    <div id="modal-homify" class="modal-overlay" onclick="closeModal(event, 'modal-homify')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModalDirect('modal-homify')">&times;</button>
+            <div class="project-header">
+                <div class="app-icon">
+                    <img src="icons/homify_icon.png" alt="Homify Icon"
+                        onerror="this.style.display='none'; this.parentNode.innerHTML='🏠'" />
+                </div>
+                <div>
+                    <h2 style="margin:0">Homify</h2>
+                    <span class="project-type">Mobile Application</span>
+                </div>
+            </div>
+            <p>Homify solves the friction of living with roommates. Key features include an automated chore rotation
+                system and a ledger for splitting shared costs like rent and groceries.</p>
+
+            <h4>Prints</h4>
+            <div class="slider-container">
+                <button class="slider-nav prev-btn" onclick="sideScroll('gallery-homify', 'left')">❮</button>
+                <button class="slider-nav next-btn" onclick="sideScroll('gallery-homify', 'right')">❯</button>
+
+                <div class="media-gallery" id="gallery-homify">
+                    <img src="homify/Hotpot 0.png" alt="Screen 1">
+                    <img src="homify/Hotpot 1.png" alt="Screen 2">
+                    <img src="homify/Hotpot 2.png" alt="Screen 3">
+                    <img src="homify/Hotpot 3.png" alt="Screen 4">
+                    <img src="homify/Hotpot 4.png" alt="Screen 5">
+                </div>
+            </div>
+
+            <div class="download-footer">
+                <div><strong>Download Build</strong><br><small>Version 1.0.0-3</small></div>
+                <a href="downloads/homify-1.0.0-3.apk" class="btn-outline"
+                    style="background:var(--accent); color:#000">Download
+                    APK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-refits" class="modal-overlay" onclick="closeModal(event, 'modal-refits')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModalDirect('modal-refits')">&times;</button>
+            <div class="project-header">
+                <div class="app-icon">
+                    <img src="icons/refit_icon.png" alt="Re:Fits Icon"
+                        onerror="this.style.display='none'; this.parentNode.innerHTML='👕'" />
+
+                </div>
+                <div>
+                    <h2 style="margin:0">Re:Fits</h2>
+                    <span class="project-type">Mobile Application</span>
+                </div>
+            </div>
+            <p>Built with Jetpack Compose and Room for an offline-first experience. It uses Computer Vision concepts to
+                help users categorize their wardrobe items from photos.</p>
+            <div class="slider-container">
+                <button class="slider-nav prev-btn" onclick="sideScroll('refits-homify', 'left')">❮</button>
+                <button class="slider-nav next-btn" onclick="sideScroll('refits-homify', 'right')">❯</button>
+
+                <div class="media-gallery" id="refits-homify">
+                    <img src="refits/screenshot1.png" alt="UI Kit">
+                    <img src="refits/screenshot2.png" alt="UI Kit">
+                    <img src="refits/screenshot3.png" alt="UI Kit">
+                    <img src="refits/screenshot4.png" alt="UI Kit">
+                    <img src="refits/screenshot5.png" alt="UI Kit">
+                </div>
+            </div>
+
+            <div class="download-footer">
+                <div><strong>Download Build</strong><br><small>Version 1.0.4-6</small></div>
+                <a href="downloads/refits-1.0.4-6.apk" class="btn-outline"
+                    style="background:var(--accent); color:#000">Download APK</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-projectv" class="modal-overlay" onclick="closeModal(event, 'modal-projectv')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModalDirect('modal-projectv')">&times;</button>
+            <div class="project-header">
+                <div class="app-icon">🎮</div>
+                <div>
+                    <h2 style="margin:0">Project V (WIP)</h2>
+                    <span class="project-type">Game</span>
+                </div>
+            </div>
+            <p>A fast-paced Unity game. I focused on writing optimized C# scripts for enemy AI pathfinding and dynamic
+                lighting shaders that work smoothly on mobile hardware.</p>
+            <div class="slider-container">
+                <button class="slider-nav prev-btn" onclick="sideScroll('project-v', 'left')">❮</button>
+                <button class="slider-nav next-btn" onclick="sideScroll('project-v', 'right')">❯</button>
+                <div class="media-gallery" id="project-v">
+                    <!-- <video controls>
+                        <source src="videos/gameplay.mp4" type="video/mp4">
+                    </video> -->
+                    <img src="Project V/v.png" alt="UI Kit">
+
+                </div>
+            </div>
+            <!-- <div class="download-footer">
+                <a href="#" class="btn-outline" style="background:var(--accent); color:#000">Play on Itch.io</a>
+            </div> -->
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Tiago Parente · Developed with passion in Lisbon</p>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event, id) {
+            if (event.target.id === id) {
+                closeModalDirect(id);
+            }
+        }
+
+        function closeModalDirect(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function sideScroll(elementId, direction) {
+            const container = document.getElementById(elementId);
+            const scrollAmount = container.clientWidth * 0.8; // Scrolls 80% of the view width
+
+            if (direction === 'left') {
+                container.scrollLeft -= scrollAmount;
+            } else {
+                container.scrollLeft += scrollAmount;
+            }
+        }
+    </script>
+</body>
+
+</html>
