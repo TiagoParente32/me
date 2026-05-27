@@ -365,6 +365,88 @@
             border-top: 1px solid #1e293b;
         }
 
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Featured project styling */
+        .project-card.featured {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.02));
+            border: 2px solid var(--accent);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .featured-image {
+            flex: 0 0 40%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .featured-content {
+            flex: 1;
+        }
+
+        .featured-content h3 {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            color: var(--accent);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .project-card.featured {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .featured-image {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+
         @media (max-width: 600px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -374,6 +456,14 @@
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
+            }
+
+            .project-card.featured {
+                padding: 24px;
+            }
+
+            .featured-content h3 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -400,6 +490,27 @@
         <h2 class="section-title">Featured Projects</h2>
 
         <div class="project-grid">
+
+            <div class="project-card featured" onclick="openModal('modal-openproxy')">
+                <div class="featured-image">
+                    <img src="open-proxy/example.png" alt="OpenProxy Interface" onerror="this.parentNode.innerHTML='🔒'" />
+                </div>
+                <div class="featured-content">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <img src="icons/openproxy_icon.png" alt="OpenProxy Icon" style="width: 56px; height: 56px; border-radius: 6px;" />
+                        <h3 style="margin: 0;">OpenProxy</h3>
+                    </div>
+                    <div class="project-type" style="margin-bottom: 15px;">Desktop Application</div>
+                    <p>A fast, modern network debugging proxy built for developers. Combines mitmproxy's raw power with a sleek Electron + Vue 3 UI. Perfect for inspecting traffic, mocking APIs, rewriting URLs, and testing network conditions.</p>
+                    <div class="tag-container">
+                        <span class="tag">Electron</span>
+                        <span class="tag">Vue 3</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">mitmproxy</span>
+                    </div>
+                    <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span>
+                </div>
+            </div>
 
             <div class="project-card" onclick="openModal('modal-homify')">
                 <div class="project-header">
@@ -576,6 +687,49 @@
             <!-- <div class="download-footer">
                 <a href="#" class="btn-outline" style="background:var(--accent); color:#000">Play on Itch.io</a>
             </div> -->
+        </div>
+    </div>
+
+    <div id="modal-openproxy" class="modal-overlay" onclick="closeModal(event, 'modal-openproxy')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModalDirect('modal-openproxy')">&times;</button>
+            <div class="project-header">
+                <div class="app-icon">
+                    <img src="icons/openproxy_icon.png" alt="OpenProxy Icon"
+                        onerror="this.style.display='none'; this.parentNode.innerHTML='🔒'" />
+                </div>
+                <div>
+                    <h2 style="margin:0">OpenProxy</h2>
+                    <span class="project-type">Desktop Application</span>
+                </div>
+            </div>
+            <p>OpenProxy is a fast, modern network debugging proxy built for developers. It combines the raw power of mitmproxy with a sleek, native-feeling desktop UI. Perfect for inspecting HTTP/HTTPS traffic, mocking API responses, rewriting URLs, and testing network conditions.</p>
+            
+            <h4>Key Features</h4>
+            <ul>
+                <li><strong>Traffic Interception</strong> - View, inspect, and filter HTTP/HTTPS requests in real-time</li>
+                <li><strong>Map Local (Mocking)</strong> - Trick your app into receiving custom JSON/HTML responses</li>
+                <li><strong>Map Remote (Rewrites)</strong> - Transparently route URLs to localhost dev servers</li>
+                <li><strong>Live Breakpoints</strong> - Pause requests mid-flight, edit headers/bodies</li>
+                <li><strong>VPN Mode</strong> - Route device traffic through WireGuard tunnel</li>
+                <li><strong>Smart Android Setup</strong> - 1-click ADB integration with auto-update</li>
+                <li><strong>Network Throttling</strong> - Simulate various network conditions</li>
+            </ul>
+
+            <h4>Screenshots</h4>
+            <div class="slider-container">
+                <button class="slider-nav prev-btn" onclick="sideScroll('openproxy-gallery', 'left')">❮</button>
+                <button class="slider-nav next-btn" onclick="sideScroll('openproxy-gallery', 'right')">❯</button>
+                <div class="media-gallery" id="openproxy-gallery">
+                    <img src="open-proxy/example.png" alt="OpenProxy Interface 1">
+                    <img src="open-proxy/example2.png" alt="OpenProxy Interface 2">
+                </div>
+            </div>
+
+            <div class="download-footer">
+                <div><strong>GitHub Repository</strong><br><small>Open Source Project</small></div>
+                <a href="https://github.com/TiagoParente32/open-proxy" class="btn-outline" style="background:var(--accent); color:#000">View on GitHub</a>
+            </div>
         </div>
     </div>
 
