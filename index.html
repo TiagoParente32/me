@@ -7,36 +7,63 @@
     <title>Tiago Parente</title>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #030712;
-            --card-bg: #111827;
+            --tile-size: 40px;
+            --map-cols: 16;
+            --map-rows: 10;
+            --bg: #0a0e1a;
+            --card-bg: #12172b;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent-2: #ffd23f;
+            --accent-pink: #f472b6;
+            --accent-green: #4ade80;
+            --accent-purple: #a78bfa;
+            --accent-orange: #fb923c;
+            --accent-red: #f87171;
+            --accent-glow: rgba(56, 189, 248, 0.35);
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
+            --pixel-border: #2a3358;
         }
 
         * {
             box-sizing: border-box;
-            transition: all 0.2s ease-in-out;
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'VT323', monospace;
+            font-size: 1.25rem;
             margin: 0;
             background-color: var(--bg);
+            background-image:
+                linear-gradient(rgba(167, 139, 250, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244, 114, 182, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
+            image-rendering: pixelated;
+        }
+
+        h1, h2, h3, h4, .pixel-font {
+            font-family: 'Press Start 2P', cursive;
         }
 
         /* --- HEADER --- */
         header {
-            background: radial-gradient(circle at top right, #1e293b, var(--bg));
+            background:
+                radial-gradient(circle at top left, rgba(244, 114, 182, 0.25), transparent 45%),
+                radial-gradient(circle at top right, rgba(56, 189, 248, 0.25), transparent 45%),
+                radial-gradient(circle at bottom, rgba(74, 222, 128, 0.15), transparent 55%),
+                var(--bg);
             padding: 80px 20px;
             text-align: center;
-            border-bottom: 1px solid #1e293b;
+            border-bottom: 4px solid var(--pixel-border);
+            box-shadow: 0 6px 0 #000;
+            position: relative;
         }
 
         .container {
@@ -46,19 +73,29 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2.4rem;
             margin: 0;
-            background: linear-gradient(to right, #f8fafc, #38bdf8);
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-2), var(--accent-green), var(--accent));
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            background-clip: text;
+            animation: heroShift 6s linear infinite;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        @keyframes heroShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
             color: var(--text-dim);
             max-width: 600px;
-            margin: 20px auto;
+            margin: 30px auto;
         }
 
         /* --- BUTTONS & LINKS --- */
@@ -71,68 +108,54 @@
         }
 
         .btn-outline {
-            padding: 10px 20px;
-            border: 1px solid #334155;
-            border-radius: 50px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.65rem;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 0;
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: #1e2a4a;
+            box-shadow: 0 4px 0 #000, inset 0 0 0 2px var(--pixel-border);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
 
         .btn-outline:hover {
             background: var(--accent);
-            border-color: var(--accent);
             color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #000, inset 0 0 0 2px #000;
+        }
+
+        .btn-outline:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #000;
         }
 
         /* --- SECTIONS --- */
         .section-title {
-            font-size: 2rem;
+            font-size: 1.4rem;
             margin-top: 80px;
             margin-bottom: 40px;
             display: flex;
             align-items: center;
             gap: 15px;
+            color: var(--accent-2);
+            text-shadow: 3px 3px 0 #000;
         }
 
         .section-title::after {
             content: "";
-            height: 1px;
-            background: #334155;
+            height: 4px;
+            background: repeating-linear-gradient(90deg, var(--pixel-border) 0 8px, transparent 8px 16px);
             flex-grow: 1;
         }
 
-        /* --- PROJECT GRID --- */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid #1f2937;
-            border-radius: 20px;
-            padding: 24px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-
+        /* --- APP INFO (used inside modals) --- */
         .project-header {
             display: flex;
             align-items: center;
@@ -144,32 +167,36 @@
             width: 64px;
             height: 64px;
             background: #1e293b;
-            border-radius: 14px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
-            border: 1px solid #334155;
+            border: 3px solid var(--pixel-border);
+            box-shadow: 3px 3px 0 #000;
             flex-shrink: 0;
             overflow: hidden;
+            image-rendering: pixelated;
         }
 
         .app-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            image-rendering: pixelated;
         }
 
         .project-info h3 {
             margin: 0;
             font-size: 1.3rem;
+            font-family: 'Press Start 2P', cursive;
         }
 
         .project-type {
-            font-size: 0.7rem;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
             text-transform: uppercase;
-            color: var(--accent);
-            font-weight: bold;
+            color: var(--accent-2);
         }
 
         .tag-container {
@@ -181,29 +208,46 @@
 
         .tag {
             background: #1f2937;
+            border: 2px solid var(--pixel-border);
             padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
+            border-radius: 0;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
             color: #cbd5e1;
         }
 
-        /* --- TECH STACK --- */
+        .tag:nth-child(4n+1) { border-color: var(--accent); color: var(--accent); }
+        .tag:nth-child(4n+2) { border-color: var(--accent-pink); color: var(--accent-pink); }
+        .tag:nth-child(4n+3) { border-color: var(--accent-green); color: var(--accent-green); }
+        .tag:nth-child(4n+4) { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+        /* --- TECH STACK (inventory) --- */
         .stack-list {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             background: #020617;
             padding: 30px;
-            border-radius: 16px;
-            border: 1px solid #1e293b;
+            border: 4px solid var(--pixel-border);
+            box-shadow: 0 6px 0 #000;
         }
 
         .stack-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 500;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            background: #12172b;
+            border: 2px solid var(--pixel-border);
+            padding: 8px 12px;
         }
+
+        .stack-item:nth-child(5n+1) span { color: var(--accent); }
+        .stack-item:nth-child(5n+2) span { color: var(--accent-pink); }
+        .stack-item:nth-child(5n+3) span { color: var(--accent-green); }
+        .stack-item:nth-child(5n+4) span { color: var(--accent-2); }
+        .stack-item:nth-child(5n+5) span { color: var(--accent-purple); }
 
         .stack-item span {
             color: var(--accent);
@@ -230,8 +274,9 @@
             background: var(--card-bg);
             max-width: 900px;
             width: 100%;
-            border-radius: 24px;
-            border: 1px solid #1e293b;
+            border-radius: 0;
+            border: 4px solid var(--pixel-border);
+            box-shadow: 0 0 0 4px #000, 0 0 40px var(--accent-glow);
             padding: 40px;
             position: relative;
             animation: slideUp 0.3s ease-out;
@@ -251,16 +296,23 @@
 
         .close-modal {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            right: 16px;
             background: #1f2937;
-            border: none;
+            border: 3px solid var(--pixel-border);
             color: white;
             width: 40px;
             height: 40px;
-            border-radius: 50%;
+            border-radius: 0;
+            box-shadow: 3px 3px 0 #000;
             cursor: pointer;
             font-size: 24px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .close-modal:hover {
+            background: var(--accent);
+            color: #000;
         }
 
         /* Container for the slider and buttons */
@@ -275,17 +327,14 @@
             gap: 15px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            /* Essential for the smooth jump */
             scrollbar-width: none;
-            /* Firefox */
             -ms-overflow-style: none;
-            /* IE/Edge */
-            padding: 10px 0;
+            margin: 30px 0;
+            padding: 10px 0 15px;
         }
 
         .media-gallery::-webkit-scrollbar {
             display: none;
-            /* Chrome/Safari */
         }
 
         /* Custom Navigation Buttons */
@@ -294,20 +343,18 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(56, 189, 248, 0.2);
-            /* var(--accent) with opacity */
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 0;
+            box-shadow: 3px 3px 0 #000;
             color: var(--text-main);
             width: 44px;
             height: 44px;
-            border-radius: 50%;
             cursor: pointer;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            transition: all 0.2s;
         }
 
         .slider-nav:hover {
@@ -323,27 +370,18 @@
             right: -22px;
         }
 
-        /* Visual indicator that more content exists */
         .media-gallery::after {
             content: '';
             padding-right: 50px;
-            /* Buffer space at the end */
-        }
-
-        .media-gallery {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            margin: 30px 0;
-            padding-bottom: 15px;
         }
 
         .media-gallery img,
         .media-gallery video {
             height: 450px;
-            border-radius: 12px;
-            border: 1px solid #334155;
+            border-radius: 0;
+            border: 3px solid var(--pixel-border);
             background: #000;
+            image-rendering: pixelated;
         }
 
         .download-footer {
@@ -352,8 +390,8 @@
             justify-content: space-between;
             background: rgba(56, 189, 248, 0.05);
             padding: 20px;
-            border-radius: 16px;
-            border: 1px dashed var(--accent);
+            border-radius: 0;
+            border: 3px dashed var(--accent);
             margin-top: 30px;
         }
 
@@ -362,94 +400,330 @@
             padding: 40px;
             text-align: center;
             color: var(--text-dim);
-            border-top: 1px solid #1e293b;
+            border-top: 4px solid var(--pixel-border);
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
         }
 
-        /* Scroll animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .project-card {
-            animation: fadeInUp 0.6s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-        .project-card:nth-child(3) { animation-delay: 0.3s; }
-        .project-card:nth-child(4) { animation-delay: 0.4s; }
-
-        /* Featured project styling */
-        .project-card.featured {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(56, 189, 248, 0.02));
-            border: 2px solid var(--accent);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 40px;
-            padding: 40px;
-        }
-
-        .featured-image {
-            flex: 0 0 40%;
-            border-radius: 16px;
+        /* ============ GAME WORLD ============ */
+        .game-world {
+            position: relative;
+            background: linear-gradient(180deg, #0d1326 0%, #131b34 100%);
+            border: 4px solid var(--pixel-border);
+            box-shadow: 0 6px 0 #000;
+            padding: 30px 20px 0;
             overflow: hidden;
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
         }
 
-        .featured-image img {
+        .game-hint {
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            color: var(--accent-2);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-hint kbd {
+            background: #1e2a4a;
+            border: 2px solid var(--pixel-border);
+            box-shadow: 2px 2px 0 #000;
+            padding: 1px 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .hud-panel {
+            background: #020617;
+            border: 3px solid var(--pixel-border);
+            box-shadow: 0 4px 0 #000;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .hud-icon {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--pixel-border);
+            background: #1e293b;
+            flex-shrink: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .hud-icon img {
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
         }
 
-        .featured-content {
-            flex: 1;
+        .hud-text h3 {
+            margin: 0 0 6px 0;
+            font-size: 1rem;
+            color: var(--accent-2);
         }
 
-        .featured-content h3 {
-            font-size: 1.8rem;
-            margin: 0 0 10px 0;
+        .hud-text p {
+            margin: 0;
+            font-size: 1.15rem;
+            color: var(--text-dim);
+        }
+
+        .hud-text .hud-action {
             color: var(--accent);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6rem;
+            margin-top: 8px;
+            display: inline-block;
         }
 
-        .featured-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: #000;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
+        .tile-map-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 4px;
+            overflow-x: auto;
+        }
+
+        .tile-map {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(var(--map-cols), var(--tile-size));
+            grid-template-rows: repeat(var(--map-rows), var(--tile-size));
+            border: 4px solid var(--pixel-border);
+            box-shadow: 0 4px 0 #000;
+            flex-shrink: 0;
+        }
+
+        .tile {
+            width: var(--tile-size);
+            height: var(--tile-size);
+            background-size: cover;
+            image-rendering: pixelated;
+            position: relative;
+        }
+
+        .tile.tree {
+            overflow: visible;
+            z-index: 3;
+        }
+
+        .tile.tree .tree-sprite {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: calc(var(--tile-size) * 1.35);
+            height: calc(var(--tile-size) * 2);
+            transform: translateX(-50%);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            image-rendering: pixelated;
+            pointer-events: none;
+        }
+
+        .tile.door {
+            cursor: pointer;
+            filter: drop-shadow(0 0 4px var(--door-color, var(--accent)));
+        }
+
+        .tile.door::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 0 2px var(--door-color, var(--accent));
+            opacity: 0.55;
+        }
+
+        .door-badge {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(var(--tile-size) * 1.05);
+            height: calc(var(--tile-size) * 1.05);
+            border: 2px solid var(--door-color, var(--pixel-border));
+            background: #0f172a;
+            box-shadow: 0 3px 0 #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(var(--tile-size) * 0.55);
+            overflow: hidden;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .door-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
+
+        .tile-label {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.45rem;
+            white-space: nowrap;
+            color: var(--door-color, var(--accent-2));
+            text-shadow: 2px 2px 0 #000;
+            pointer-events: none;
+        }
+
+        .character {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 40px;
+            transform: translate(-50%, -100%);
+            transition: left 0.35s steps(6), top 0.35s steps(6);
+            z-index: 5;
+        }
+
+        .character.facing-left {
+            transform: translate(-50%, -100%) scaleX(-1);
+        }
+
+        .character .c-hair {
+            position: absolute;
+            top: -2px;
+            left: 8px;
+            width: 16px;
+            height: 6px;
+            background: #3a2a1a;
+        }
+
+        .character .c-head {
+            position: absolute;
+            top: 2px;
+            left: 8px;
+            width: 16px;
+            height: 14px;
+            background: #ffcf9c;
+            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.15);
+        }
+
+        .character .c-body {
+            position: absolute;
+            top: 16px;
+            left: 6px;
+            width: 20px;
+            height: 14px;
+            background: var(--accent-pink);
+            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.2);
+        }
+
+        .character .c-leg {
+            position: absolute;
+            top: 30px;
+            width: 7px;
+            height: 10px;
+            background: #1e2a4a;
+        }
+
+        .character .c-leg.l { left: 7px; }
+        .character .c-leg.r { left: 18px; }
+
+        .character.walking .c-leg.l {
+            animation: walkL 0.35s steps(2) infinite;
+        }
+
+        .character.walking .c-leg.r {
+            animation: walkR 0.35s steps(2) infinite;
+        }
+
+        @keyframes walkL {
+            0%, 100% { top: 30px; height: 10px; }
+            50% { top: 28px; height: 8px; }
+        }
+
+        @keyframes walkR {
+            0%, 100% { top: 28px; height: 8px; }
+            50% { top: 30px; height: 10px; }
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            padding: 20px 0 26px;
+            flex-wrap: wrap;
+        }
+
+        .dpad {
+            display: grid;
+            grid-template-columns: repeat(3, 44px);
+            grid-template-rows: repeat(3, 44px);
+            gap: 4px;
+        }
+
+        .dpad .ctrl-btn {
+            width: 44px;
+            height: 44px;
+            font-size: 0.8rem;
+        }
+
+        .ctrl-btn {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+            width: 52px;
+            height: 52px;
+            background: #1e2a4a;
+            border: 3px solid var(--pixel-border);
+            box-shadow: 0 4px 0 #000;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ctrl-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #000;
+        }
+
+        .ctrl-btn.select {
+            width: auto;
+            padding: 0 20px;
+            font-size: 0.6rem;
+        }
+
+        .ctrl-btn.mute {
+            background: #3a2a4a;
+            width: auto;
+            padding: 0 16px;
+            font-size: 1.1rem;
         }
 
         @media (max-width: 900px) {
-            .project-card.featured {
-                flex-direction: column;
-                gap: 20px;
+            .tile-map {
+                --tile-size: 30px;
             }
+        }
 
-            .featured-image {
-                flex: 0 0 auto;
-                width: 100%;
+        @media (max-width: 500px) {
+            .tile-map {
+                --tile-size: 24px;
             }
         }
 
         @media (max-width: 600px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 1.6rem;
             }
 
             .download-footer {
@@ -458,12 +732,9 @@
                 text-align: center;
             }
 
-            .project-card.featured {
-                padding: 24px;
-            }
-
-            .featured-content h3 {
-                font-size: 1.5rem;
+            .hud-panel {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -489,106 +760,45 @@
 
         <h2 class="section-title">Featured Projects</h2>
 
-        <div class="project-grid">
+        <div class="game-world">
+            <p class="game-hint">Walk with <kbd>▲</kbd><kbd>▼</kbd><kbd>◀</kbd><kbd>▶</kbd> / <kbd>WASD</kbd> and walk
+                into a door to open a project! Press <kbd>ENTER</kbd> / <kbd>SPACE</kbd> too.</p>
 
-            <div class="project-card featured" onclick="openModal('modal-openproxy')">
-                <div class="featured-image">
-                    <img src="open-proxy/example.png" alt="OpenProxy Interface" onerror="this.parentNode.innerHTML='🔒'" />
-                </div>
-                <div class="featured-content">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                        <img src="icons/openproxy_icon.png" alt="OpenProxy Icon" style="width: 56px; height: 56px; border-radius: 6px;" />
-                        <h3 style="margin: 0;">OpenProxy</h3>
-                    </div>
-                    <div class="project-type" style="margin-bottom: 15px;">Desktop Application</div>
-                    <p>A fast, modern network debugging proxy built for developers. Combines mitmproxy's raw power with a sleek Electron + Vue 3 UI. Perfect for inspecting traffic, mocking APIs, rewriting URLs, and testing network conditions.</p>
-                    <div class="tag-container">
-                        <span class="tag">Electron</span>
-                        <span class="tag">Vue 3</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">mitmproxy</span>
-                    </div>
-                    <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span>
+            <div class="hud-panel" id="hud-panel">
+                <div class="hud-icon" id="hud-icon">🔒</div>
+                <div class="hud-text">
+                    <h3 id="hud-title">OpenProxy</h3>
+                    <p id="hud-desc">A fast, modern network debugging proxy for developers.</p>
+                    <span class="hud-action" id="hud-action">▶ Walk into the door to enter</span>
                 </div>
             </div>
 
-            <div class="project-card" onclick="openModal('modal-michord')">
-                <div class="project-header">
-                    <div class="app-icon" style="background: linear-gradient(135deg, #1e293b, #334155);">
-                        <img src="icons/michord_icon.png" alt="MiChord! Icon"
-                            onerror="this.style.display='none'; this.parentNode.innerHTML='🎹'" />
-                    </div>
-                    <div class="project-info">
-                        <div class="project-type">Mobile Application</div>
-                        <h3>MiChord!</h3>
+            <div class="tile-map-wrap">
+                <div class="tile-map" id="tile-map">
+                    <div class="character" id="character">
+                        <div class="c-hair"></div>
+                        <div class="c-head"></div>
+                        <div class="c-body"></div>
+                        <div class="c-leg l"></div>
+                        <div class="c-leg r"></div>
                     </div>
                 </div>
-                <p>A MIDI chord companion inspired by HiChord — play, sequence, and send chords straight to your MIDI setup.</p>
-                <div class="tag-container">
-                    <span class="tag">Kotlin</span>
-                    <span class="tag">MIDI</span>
-                    <span class="tag">Compose</span>
-                </div>
-                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
             </div>
 
-            <div class="project-card" onclick="openModal('modal-homify')">
-                <div class="project-header">
-                    <div class="app-icon" style="background: linear-gradient(135deg, #1e293b, #334155);">
-                        <img src="icons/homify_icon.png" alt="Homify Icon"
-                            onerror="this.style.display='none'; this.parentNode.innerHTML='🏠'" />
-                    </div>
-                    <div class="project-info">
-                        <div class="project-type">Mobile Application</div>
-                        <h3>Homify</h3>
-                    </div>
+            <div class="game-controls">
+                <div class="dpad">
+                    <span></span>
+                    <button class="ctrl-btn" id="ctrl-up" aria-label="Move up">▲</button>
+                    <span></span>
+                    <button class="ctrl-btn" id="ctrl-left" aria-label="Move left">◀</button>
+                    <button class="ctrl-btn select" id="ctrl-select" aria-label="Open project">OK</button>
+                    <button class="ctrl-btn" id="ctrl-right" aria-label="Move right">▶</button>
+                    <span></span>
+                    <button class="ctrl-btn" id="ctrl-down" aria-label="Move down">▼</button>
+                    <span></span>
                 </div>
-                <p>Manage shared chores and split expenses with roommates effortlessly.</p>
-                <div class="tag-container">
-                    <span class="tag">Flutter</span>
-                    <span class="tag">Firebase</span>
-                    <span class="tag">MVVM</span>
-                </div>
-                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
+                <button class="ctrl-btn mute" id="ctrl-mute" aria-label="Toggle sound">🔊 SOUND</button>
             </div>
-
-            <div class="project-card" onclick="openModal('modal-refits')">
-                <div class="project-header">
-                    <div class="app-icon" style="background: linear-gradient(135deg, #1e293b, #334155);">
-                        <img src="icons/refit_icon.png" alt="Re:Fits Icon"
-                            onerror="this.style.display='none'; this.parentNode.innerHTML='👕'" />
-                    </div>
-                    <div class="project-info">
-                        <div class="project-type">Mobile Application</div>
-                        <h3>Re:Fits</h3>
-                    </div>
-                </div>
-                <p>A high-performance personal styling manager with local-first data syncing.</p>
-                <div class="tag-container">
-                    <span class="tag">Kotlin</span>
-                    <span class="tag">Compose</span>
-                    <span class="tag">Room</span>
-                </div>
-                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
-            </div>
-
-            <div class="project-card" onclick="openModal('modal-projectv')">
-                <div class="project-header">
-                    <div class="app-icon" style="background: linear-gradient(135deg, #0ea5e9, #2563eb);">🎮</div>
-                    <div class="project-info">
-                        <div class="project-type">Game Development</div>
-                        <h3>Project V (WIP)</h3>
-                    </div>
-                </div>
-                <p>3D Roguelike with dynamic scaling and complex ability systems.</p>
-                <div class="tag-container">
-                    <span class="tag">Unity</span>
-                    <span class="tag">C#</span>
-                    <span class="tag">Shaders</span>
-                </div>
-                <!-- <span style="color: var(--accent); font-size: 0.8rem; font-weight: bold;">Click for Details →</span> -->
-            </div>
-
         </div>
 
         <h2 class="section-title">Technical Expertise</h2>
@@ -819,6 +1029,383 @@
                 container.scrollLeft += scrollAmount;
             }
         }
+
+        // --- CHIPTUNE SOUND EFFECTS (Web Audio, no external files) ---
+        const SoundFX = (function () {
+            let ctx = null;
+            let muted = localStorage.getItem('portfolio-sound-muted') === 'true';
+
+            function ensureCtx() {
+                if (!ctx) {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) ctx = new AudioCtx();
+                }
+                if (ctx && ctx.state === 'suspended') ctx.resume();
+                return ctx;
+            }
+
+            function tone(freq, duration, type, volume, delay) {
+                if (muted) return;
+                const audioCtx = ensureCtx();
+                if (!audioCtx) return;
+                const startTime = audioCtx.currentTime + (delay || 0);
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type || 'square';
+                osc.frequency.setValueAtTime(freq, startTime);
+                gain.gain.setValueAtTime(0, startTime);
+                gain.gain.linearRampToValueAtTime(volume || 0.12, startTime + 0.01);
+                gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(startTime);
+                osc.stop(startTime + duration + 0.02);
+            }
+
+            return {
+                step: () => tone(140 + Math.random() * 40, 0.07, 'square', 0.08),
+                bump: () => tone(90, 0.09, 'sine', 0.1),
+                select: () => { tone(523, 0.09, 'square', 0.14); tone(784, 0.12, 'square', 0.14, 0.08); },
+                close: () => tone(300, 0.08, 'triangle', 0.1),
+                isMuted: () => muted,
+                toggleMute: () => {
+                    muted = !muted;
+                    localStorage.setItem('portfolio-sound-muted', muted);
+                    if (!muted) ensureCtx();
+                    return muted;
+                }
+            };
+        })();
+
+        // --- GAME WORLD: Pokémon-style free-roam tile map (Kenney CC0 sprites) ---
+        (function () {
+            const mapEl = document.getElementById('tile-map');
+            const character = document.getElementById('character');
+            const hudIcon = document.getElementById('hud-icon');
+            const hudTitle = document.getElementById('hud-title');
+            const hudDesc = document.getElementById('hud-desc');
+            const hudAction = document.getElementById('hud-action');
+            const muteBtn = document.getElementById('ctrl-mute');
+
+            if (!mapEl || !character) return;
+
+            const COLS = 16, ROWS = 10;
+            const T = 'tiles/'; // tile sprite folder
+
+            const PROJECTS = {
+                openproxy: { modal: 'modal-openproxy', title: 'OpenProxy', icon: 'icons/openproxy_icon.png', fallback: '🔒', desc: "Desktop network debugging proxy combining mitmproxy's power with a sleek Electron + Vue 3 UI.", door: 'door_brick_open', color: 'var(--accent)' },
+                michord: { modal: 'modal-michord', title: 'MiChord!', icon: 'icons/michord_icon.png', fallback: '🎹', desc: 'A MIDI chord companion inspired by HiChord — play, sequence, and send chords to your MIDI setup.', door: 'door_brick_open', color: 'var(--accent-pink)' },
+                homify: { modal: 'modal-homify', title: 'Homify', icon: 'icons/homify_icon.png', fallback: '🏠', desc: 'Manage shared chores and split expenses with roommates effortlessly.', door: 'door_brick_open', color: 'var(--accent-green)' },
+                refits: { modal: 'modal-refits', title: 'Re:Fits', icon: 'icons/refit_icon.png', fallback: '👕', desc: 'A high-performance personal styling manager with local-first data syncing.', door: 'door_brick_open', color: 'var(--accent-orange)' },
+                projectv: { modal: 'modal-projectv', title: 'Project V (WIP)', icon: '', fallback: '🎮', desc: '3D Roguelike with dynamic scaling and complex ability systems.', door: 'door_brick_open', color: 'var(--accent-purple)' }
+            };
+
+            // Doors: row/col placed around the town, connected by a dirt path
+            const DOORS = [
+                { r: 2, c: 3, key: 'openproxy' },
+                { r: 2, c: 7, key: 'michord' },
+                { r: 2, c: 11, key: 'homify' },
+                { r: 7, c: 5, key: 'refits' },
+                { r: 7, c: 10, key: 'projectv' }
+            ];
+
+            const grassImgs = ['grass0', 'grass0', 'grass1', 'grass0', 'grass2'];
+            const treeImgs = ['tree_pine_green', 'tree_pine_orange', 'tree_ball_green', 'tree_small_green', 'tree_small_orange'];
+
+            function buildGrid() {
+                const grid = [];
+                for (let r = 0; r < ROWS; r++) {
+                    const row = [];
+                    for (let c = 0; c < COLS; c++) {
+                        const isBorder = r === 0 || r === ROWS - 1 || c === 0 || c === COLS - 1;
+                        row.push(isBorder
+                            ? { type: 'tree', img: treeImgs[(r + c) % treeImgs.length], base: 'grass0' }
+                            : { type: 'grass', img: grassImgs[(r * 7 + c * 3) % grassImgs.length] });
+                    }
+                    grid.push(row);
+                }
+
+                // main horizontal path
+                for (let c = 1; c < COLS - 1; c++) grid[5][c] = { type: 'path', img: 'path_dirt' };
+                // vertical connectors from top doors down to the main path
+                [3, 7, 11].forEach((c) => {
+                    grid[3][c] = { type: 'path', img: 'path_dirt' };
+                    grid[4][c] = { type: 'path', img: 'path_dirt' };
+                });
+                // vertical connectors from main path down to bottom doors
+                [5, 10].forEach((c) => {
+                    grid[6][c] = { type: 'path', img: 'path_dirt' };
+                });
+
+                // doors
+                DOORS.forEach((d) => {
+                    const proj = PROJECTS[d.key];
+                    grid[d.r][d.c] = { type: 'door', img: proj.door, key: d.key };
+                });
+
+                // decorative extra trees scattered in the grass (each sits on its own grass base)
+                [[2, 5], [2, 9], [7, 3], [7, 8], [7, 13], [3, 13], [6, 2], [8, 6], [1, 6]].forEach(([r, c], i) => {
+                    if (grid[r][c].type === 'grass') {
+                        grid[r][c] = { type: 'tree', img: treeImgs[i % treeImgs.length], base: grid[r][c].img };
+                    }
+                });
+
+                return grid;
+            }
+
+            const grid = buildGrid();
+            const cellEls = [];
+
+            function renderMap() {
+                mapEl.style.setProperty('--map-cols', COLS);
+                mapEl.style.setProperty('--map-rows', ROWS);
+                for (let r = 0; r < ROWS; r++) {
+                    const rowEls = [];
+                    for (let c = 0; c < COLS; c++) {
+                        const cell = grid[r][c];
+                        const div = document.createElement('div');
+                        div.className = 'tile' + (cell.type === 'door' ? ' door' : '') + (cell.type === 'tree' ? ' tree' : '');
+                        div.style.gridRow = r + 1;
+                        div.style.gridColumn = c + 1;
+
+                        if (cell.type === 'tree') {
+                            // grass base underneath so the tile still reads as ground
+                            div.style.backgroundImage = `url('${T}${cell.base}.png')`;
+                            const sprite = document.createElement('div');
+                            sprite.className = 'tree-sprite';
+                            sprite.style.backgroundImage = `url('${T}${cell.img}.png')`;
+                            div.appendChild(sprite);
+                        } else {
+                            div.style.backgroundImage = `url('${T}${cell.img}.png')`;
+                        }
+
+                        if (cell.type === 'door') {
+                            const proj = PROJECTS[cell.key];
+                            div.style.setProperty('--door-color', proj.color);
+                            div.addEventListener('click', () => enterDoor(cell.key));
+
+                            const badge = document.createElement('div');
+                            badge.className = 'door-badge';
+                            badge.style.setProperty('--door-color', proj.color);
+                            if (proj.icon) {
+                                badge.innerHTML = `<img src="${proj.icon}" alt="${proj.title} icon" onerror="this.style.display='none'; this.parentNode.textContent='${proj.fallback}'" />`;
+                            } else {
+                                badge.textContent = proj.fallback;
+                            }
+                            div.appendChild(badge);
+                        }
+
+                        mapEl.appendChild(div);
+                        rowEls.push(div);
+                    }
+                    cellEls.push(rowEls);
+                }
+                // keep the character element on top (appended first, so re-append last)
+                mapEl.appendChild(character);
+            }
+            renderMap();
+
+            let row = 5, col = 2; // start on the path
+            let walkTimeout;
+
+            function tileSizePx() {
+                return parseFloat(getComputedStyle(mapEl).getPropertyValue('--tile-size')) || 40;
+            }
+
+            function placeCharacter() {
+                const size = tileSizePx();
+                character.style.left = (col * size + size / 2) + 'px';
+                character.style.top = (row * size + size) + 'px';
+            }
+
+            function nearestDoor() {
+                let best = null, bestDist = Infinity;
+                DOORS.forEach((d) => {
+                    const dist = Math.max(Math.abs(d.r - row), Math.abs(d.c - col));
+                    if (dist < bestDist) { bestDist = dist; best = d; }
+                });
+                return best && bestDist <= 2 ? { door: best, dist: bestDist } : null;
+            }
+
+            function updateHud() {
+                const near = nearestDoor();
+                if (near) {
+                    const proj = PROJECTS[near.door.key];
+                    if (proj.icon) {
+                        hudIcon.innerHTML = `<img src="${proj.icon}" alt="${proj.title} icon" onerror="this.style.display='none'; this.parentNode.textContent='${proj.fallback}'" />`;
+                    } else {
+                        hudIcon.textContent = proj.fallback;
+                    }
+                    hudTitle.textContent = proj.title;
+                    hudDesc.textContent = proj.desc;
+                    hudAction.textContent = near.dist === 0 ? '▶ Press ENTER to inspect' : '▶ Walk onto the door to enter';
+                } else {
+                    hudIcon.textContent = '🕹️';
+                    hudTitle.textContent = 'Exploring the town...';
+                    hudDesc.textContent = 'Walk around and find a glowing door to check out a project!';
+                    hudAction.textContent = '▶ Use the D-pad or arrow keys';
+                }
+            }
+
+            function enterDoor(key) {
+                const proj = PROJECTS[key];
+                if (!proj) return;
+                SoundFX.select();
+                openModal(proj.modal);
+            }
+
+            function tryMove(dRow, dCol) {
+                const newRow = row + dRow;
+                const newCol = col + dCol;
+
+                if (dCol > 0) character.classList.remove('facing-left');
+                if (dCol < 0) character.classList.add('facing-left');
+
+                if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS) {
+                    SoundFX.bump();
+                    return false;
+                }
+
+                const target = grid[newRow][newCol];
+
+                if (target.type === 'tree') {
+                    SoundFX.bump();
+                    return false;
+                }
+
+                if (target.type === 'door') {
+                    updateHudForDoor(target.key);
+                    enterDoor(target.key);
+                    return false;
+                }
+
+                row = newRow;
+                col = newCol;
+                SoundFX.step();
+                character.classList.add('walking');
+                clearTimeout(walkTimeout);
+                walkTimeout = setTimeout(() => character.classList.remove('walking'), 300);
+                placeCharacter();
+                updateHud();
+                return true;
+            }
+
+            function updateHudForDoor(key) {
+                const proj = PROJECTS[key];
+                if (proj.icon) {
+                    hudIcon.innerHTML = `<img src="${proj.icon}" alt="${proj.title} icon" onerror="this.style.display='none'; this.parentNode.textContent='${proj.fallback}'" />`;
+                } else {
+                    hudIcon.textContent = proj.fallback;
+                }
+                hudTitle.textContent = proj.title;
+                hudDesc.textContent = proj.desc;
+                hudAction.textContent = '▶ Press ENTER to inspect';
+            }
+
+            function openCurrent() {
+                const near = nearestDoor();
+                if (near && near.dist === 0) enterDoor(near.door.key);
+            }
+
+            // --- Hold-to-move support (keyboard auto-repeat + press-and-hold D-pad) ---
+            const MOVE_REPEAT_DELAY = 300; // ms before repeat kicks in
+            const MOVE_REPEAT_RATE = 260;  // ms between repeated moves while held
+            let repeatTimer = null;
+            let repeatInterval = null;
+            let activeMoveKey = null;
+
+            function startRepeatMove(dRow, dCol, moveKey) {
+                if (activeMoveKey === moveKey) return; // already moving this direction
+                stopRepeatMove();
+                activeMoveKey = moveKey;
+                tryMove(dRow, dCol);
+                repeatTimer = setTimeout(() => {
+                    repeatInterval = setInterval(() => {
+                        const moved = tryMove(dRow, dCol);
+                        if (!moved) stopRepeatMove(moveKey); // hit a wall or entered a door — stop auto-repeat
+                    }, MOVE_REPEAT_RATE);
+                }, MOVE_REPEAT_DELAY);
+            }
+
+            function stopRepeatMove(moveKey) {
+                if (moveKey && activeMoveKey !== moveKey) return;
+                clearTimeout(repeatTimer);
+                clearInterval(repeatInterval);
+                repeatTimer = null;
+                repeatInterval = null;
+                activeMoveKey = null;
+            }
+
+            document.addEventListener('keydown', (e) => {
+                const anyModalOpen = document.querySelector('.modal-overlay[style*="flex"]');
+                if (anyModalOpen) return;
+                if (e.repeat) { e.preventDefault(); return; } // we handle repeats ourselves
+
+                if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+                    e.preventDefault(); startRepeatMove(0, -1, 'left');
+                } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+                    e.preventDefault(); startRepeatMove(0, 1, 'right');
+                } else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
+                    e.preventDefault(); startRepeatMove(-1, 0, 'up');
+                } else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') {
+                    e.preventDefault(); startRepeatMove(1, 0, 'down');
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault(); openCurrent();
+                }
+            });
+
+            document.addEventListener('keyup', (e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') stopRepeatMove('left');
+                else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') stopRepeatMove('right');
+                else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') stopRepeatMove('up');
+                else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') stopRepeatMove('down');
+            });
+
+            // Stop movement if the window/tab loses focus while a key is held
+            window.addEventListener('blur', () => stopRepeatMove());
+
+            const ctrlUp = document.getElementById('ctrl-up');
+            const ctrlDown = document.getElementById('ctrl-down');
+            const ctrlLeft = document.getElementById('ctrl-left');
+            const ctrlRight = document.getElementById('ctrl-right');
+            const ctrlSelect = document.getElementById('ctrl-select');
+
+            function wireHoldButton(btn, dRow, dCol, moveKey) {
+                if (!btn) return;
+                const start = (ev) => { ev.preventDefault(); startRepeatMove(dRow, dCol, moveKey); };
+                const stop = () => stopRepeatMove(moveKey);
+                btn.addEventListener('mousedown', start);
+                btn.addEventListener('touchstart', start, { passive: false });
+                btn.addEventListener('mouseup', stop);
+                btn.addEventListener('mouseleave', stop);
+                btn.addEventListener('touchend', stop);
+                btn.addEventListener('touchcancel', stop);
+            }
+
+            wireHoldButton(ctrlUp, -1, 0, 'up');
+            wireHoldButton(ctrlDown, 1, 0, 'down');
+            wireHoldButton(ctrlLeft, 0, -1, 'left');
+            wireHoldButton(ctrlRight, 0, 1, 'right');
+            if (ctrlSelect) ctrlSelect.addEventListener('click', openCurrent);
+
+            if (muteBtn) {
+                muteBtn.textContent = SoundFX.isMuted() ? '🔇 MUTED' : '🔊 SOUND';
+                muteBtn.addEventListener('click', () => {
+                    const muted = SoundFX.toggleMute();
+                    muteBtn.textContent = muted ? '🔇 MUTED' : '🔊 SOUND';
+                });
+            }
+
+            document.querySelectorAll('.close-modal').forEach((btn) => {
+                btn.addEventListener('click', () => SoundFX.close());
+            });
+
+            window.addEventListener('resize', placeCharacter);
+            window.addEventListener('load', placeCharacter);
+
+            updateHud();
+            placeCharacter();
+        })();
     </script>
 </body>
 
