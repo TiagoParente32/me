@@ -5,1405 +5,1405 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tiago Parente</title>
+    <meta name="description" content="Tiago Parente - Android Developer & Creative Coder. Portfolio styled as a Windows 98 desktop.">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%2210%22 y=%2215%22 width=%2280%22 height=%2255%22 fill=%22%23c0c0c0%22/><rect x=%2218%22 y=%2222%22 width=%2264%22 height=%2240%22 fill=%22%23008080%22/><rect x=%2230%22 y=%2275%22 width=%2240%22 height=%2210%22 fill=%22%23808080%22/></svg>">
     <style>
         :root {
-            --tile-size: 40px;
-            --map-cols: 16;
-            --map-rows: 10;
-            --bg: #0a0e1a;
-            --card-bg: #12172b;
-            --accent: #38bdf8;
-            --accent-2: #ffd23f;
-            --accent-pink: #f472b6;
-            --accent-green: #4ade80;
-            --accent-purple: #a78bfa;
-            --accent-orange: #fb923c;
-            --accent-red: #f87171;
-            --accent-glow: rgba(56, 189, 248, 0.35);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --pixel-border: #2a3358;
+            --desktop: #008080;
+            --face: #c0c0c0;
+            --light: #ffffff;
+            --hilight: #dfdfdf;
+            --shadow: #808080;
+            --dark: #0a0a0a;
+            --title-a: #000080;
+            --title-b: #1084d0;
+            --title-inactive-a: #808080;
+            --title-inactive-b: #b5b5b5;
+            --text: #000000;
+            --taskbar-h: 30px;
+            --font: "MS Sans Serif", "Pixelated MS Sans Serif", Tahoma, "Segoe UI", Arial, sans-serif;
         }
 
         * {
             box-sizing: border-box;
         }
 
+        html,
         body {
-            font-family: 'VT323', monospace;
-            font-size: 1.25rem;
+            height: 100%;
             margin: 0;
-            background-color: var(--bg);
-            background-image:
-                linear-gradient(rgba(167, 139, 250, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(244, 114, 182, 0.05) 1px, transparent 1px);
-            background-size: 24px 24px;
-            color: var(--text-main);
-            line-height: 1.5;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        h1, h2, h3, h4, .pixel-font {
-            font-family: 'Press Start 2P', cursive;
+        body {
+            font-family: var(--font);
+            font-size: 12px;
+            color: var(--text);
+            background: var(--desktop);
+            -webkit-font-smoothing: none;
+            user-select: none;
         }
 
-        /* --- HEADER --- */
-        header {
-            background:
-                radial-gradient(circle at top left, rgba(244, 114, 182, 0.25), transparent 45%),
-                radial-gradient(circle at top right, rgba(56, 189, 248, 0.25), transparent 45%),
-                radial-gradient(circle at bottom, rgba(74, 222, 128, 0.15), transparent 55%),
-                var(--bg);
-            padding: 80px 20px;
-            text-align: center;
-            border-bottom: 4px solid var(--pixel-border);
-            box-shadow: 0 6px 0 #000;
-            position: relative;
-        }
+        h1, h2, h3, h4 { margin: 0; }
+        p { margin: 0 0 10px; line-height: 1.45; }
+        a { color: #0000ff; }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
-        .hero-title {
-            font-size: 2.4rem;
-            margin: 0;
-            background: linear-gradient(90deg, var(--accent-pink), var(--accent-2), var(--accent-green), var(--accent));
-            background-size: 300% 100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: heroShift 6s linear infinite;
-            text-shadow: 4px 4px 0 rgba(0,0,0,0.5);
-            letter-spacing: 2px;
-        }
-
-        @keyframes heroShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
-        }
-
-        .hero-subtitle {
-            font-family: 'VT323', monospace;
-            font-size: 1.5rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 30px auto;
-        }
-
-        /* --- BUTTONS & LINKS --- */
-        .social-links {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn-outline {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.65rem;
-            padding: 14px 18px;
+        /* --- 3D helpers --- */
+        button, .btn {
+            font-family: var(--font);
+            font-size: 12px;
+            color: var(--text);
+            background: var(--face);
             border: none;
-            border-radius: 0;
-            color: var(--text-main);
-            text-decoration: none;
-            background: #1e2a4a;
-            box-shadow: 0 4px 0 #000, inset 0 0 0 2px var(--pixel-border);
+            min-width: 75px;
+            min-height: 23px;
+            padding: 3px 12px;
+            box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--light), inset -2px -2px var(--shadow), inset 2px 2px var(--hilight);
             cursor: pointer;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
-        }
-
-        .btn-outline:hover {
-            background: var(--accent);
-            color: #000;
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #000, inset 0 0 0 2px #000;
-        }
-
-        .btn-outline:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 0 #000;
-        }
-
-        /* --- SECTIONS --- */
-        .section-title {
-            font-size: 1.4rem;
-            margin-top: 80px;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--accent-2);
-            text-shadow: 3px 3px 0 #000;
-        }
-
-        .section-title::after {
-            content: "";
-            height: 4px;
-            background: repeating-linear-gradient(90deg, var(--pixel-border) 0 8px, transparent 8px 16px);
-            flex-grow: 1;
-        }
-
-        /* --- APP INFO (used inside modals) --- */
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .app-icon {
-            width: 64px;
-            height: 64px;
-            background: #1e293b;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            border: 3px solid var(--pixel-border);
-            box-shadow: 3px 3px 0 #000;
-            flex-shrink: 0;
-            overflow: hidden;
-            image-rendering: pixelated;
+            gap: 6px;
         }
 
-        .app-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
+        button:active, .btn:active, button.pressed {
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--dark), inset -2px -2px var(--hilight), inset 2px 2px var(--shadow);
+            padding: 4px 11px 2px 13px;
         }
 
-        .project-info h3 {
-            margin: 0;
-            font-size: 1.3rem;
-            font-family: 'Press Start 2P', cursive;
+        button:focus-visible, .btn:focus-visible {
+            outline: 1px dotted #000;
+            outline-offset: -5px;
         }
 
-        .project-type {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            color: var(--accent-2);
+        .btn.primary {
+            box-shadow: 0 0 0 1px var(--dark), inset -1px -1px var(--dark), inset 1px 1px var(--light), inset -2px -2px var(--shadow), inset 2px 2px var(--hilight);
         }
 
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 20px 0;
+        button[disabled] {
+            color: var(--shadow);
+            text-shadow: 1px 1px 0 var(--light);
+            cursor: default;
         }
 
-        .tag {
-            background: #1f2937;
-            border: 2px solid var(--pixel-border);
-            padding: 4px 10px;
-            border-radius: 0;
-            font-family: 'VT323', monospace;
-            font-size: 1rem;
-            color: #cbd5e1;
-        }
-
-        .tag:nth-child(4n+1) { border-color: var(--accent); color: var(--accent); }
-        .tag:nth-child(4n+2) { border-color: var(--accent-pink); color: var(--accent-pink); }
-        .tag:nth-child(4n+3) { border-color: var(--accent-green); color: var(--accent-green); }
-        .tag:nth-child(4n+4) { border-color: var(--accent-orange); color: var(--accent-orange); }
-
-        /* --- TECH STACK (inventory) --- */
-        .stack-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            background: #020617;
-            padding: 30px;
-            border: 4px solid var(--pixel-border);
-            box-shadow: 0 6px 0 #000;
-        }
-
-        .stack-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            background: #12172b;
-            border: 2px solid var(--pixel-border);
-            padding: 8px 12px;
-        }
-
-        .stack-item:nth-child(5n+1) span { color: var(--accent); }
-        .stack-item:nth-child(5n+2) span { color: var(--accent-pink); }
-        .stack-item:nth-child(5n+3) span { color: var(--accent-green); }
-        .stack-item:nth-child(5n+4) span { color: var(--accent-2); }
-        .stack-item:nth-child(5n+5) span { color: var(--accent-purple); }
-
-        .stack-item span {
-            color: var(--accent);
-        }
-
-        /* --- MODAL SYSTEM --- */
-        .modal-overlay {
+        /* --- Desktop --- */
+        #desktop {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(3, 7, 18, 0.98);
-            display: none;
-            justify-content: center;
-            align-items: flex-start;
-            z-index: 1000;
-            overflow-y: auto;
-            padding: 40px 20px;
-            backdrop-filter: blur(12px);
-        }
-
-        .modal-content {
-            background: var(--card-bg);
-            max-width: 900px;
-            width: 100%;
-            border-radius: 0;
-            border: 4px solid var(--pixel-border);
-            box-shadow: 0 0 0 4px #000, 0 0 40px var(--accent-glow);
-            padding: 40px;
-            position: relative;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: #1f2937;
-            border: 3px solid var(--pixel-border);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 0;
-            box-shadow: 3px 3px 0 #000;
-            cursor: pointer;
-            font-size: 24px;
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        .close-modal:hover {
-            background: var(--accent);
-            color: #000;
-        }
-
-        /* Container for the slider and buttons */
-        .slider-container {
-            position: relative;
-            width: 100%;
-        }
-
-        /* Hide default scrollbar but keep functionality */
-        .media-gallery {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            margin: 30px 0;
-            padding: 10px 0 15px;
-        }
-
-        .media-gallery::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Custom Navigation Buttons */
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(56, 189, 248, 0.2);
-            border: 2px solid var(--accent);
-            border-radius: 0;
-            box-shadow: 3px 3px 0 #000;
-            color: var(--text-main);
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .slider-nav:hover {
-            background: var(--accent);
-            color: #000;
-        }
-
-        .prev-btn {
-            left: -22px;
-        }
-
-        .next-btn {
-            right: -22px;
-        }
-
-        .media-gallery::after {
-            content: '';
-            padding-right: 50px;
-        }
-
-        .media-gallery img,
-        .media-gallery video {
-            height: 450px;
-            border-radius: 0;
-            border: 3px solid var(--pixel-border);
-            background: #000;
-            image-rendering: auto;
-        }
-
-        .download-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(56, 189, 248, 0.05);
-            padding: 20px;
-            border-radius: 0;
-            border: 3px dashed var(--accent);
-            margin-top: 30px;
-        }
-
-        footer {
-            margin-top: 100px;
-            padding: 40px;
-            text-align: center;
-            color: var(--text-dim);
-            border-top: 4px solid var(--pixel-border);
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-        }
-
-        /* ============ GAME WORLD ============ */
-        .game-world {
-            position: relative;
-            background: linear-gradient(180deg, #0d1326 0%, #131b34 100%);
-            border: 4px solid var(--pixel-border);
-            box-shadow: 0 6px 0 #000;
-            padding: 30px 20px 0;
+            inset: 0 0 var(--taskbar-h) 0;
             overflow: hidden;
         }
 
-        .game-hint {
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            color: var(--accent-2);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .game-hint kbd {
-            background: #1e2a4a;
-            border: 2px solid var(--pixel-border);
-            box-shadow: 2px 2px 0 #000;
-            padding: 1px 8px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
-            color: var(--text-main);
-        }
-
-        .hud-panel {
-            background: #020617;
-            border: 3px solid var(--pixel-border);
-            box-shadow: 0 4px 0 #000;
-            padding: 18px 22px;
-            margin-bottom: 24px;
-            min-height: 90px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .hud-icon {
-            width: 48px;
-            height: 48px;
-            border: 3px solid var(--pixel-border);
-            background: #1e293b;
-            flex-shrink: 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .hud-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
-        }
-
-        .hud-text h3 {
-            margin: 0 0 6px 0;
-            font-size: 1rem;
-            color: var(--accent-2);
-        }
-
-        .hud-text p {
-            margin: 0;
-            font-size: 1.15rem;
-            color: var(--text-dim);
-        }
-
-        .hud-text .hud-action {
-            color: var(--accent);
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6rem;
-            margin-top: 8px;
-            display: inline-block;
-        }
-
-        .tile-map-wrap {
-            display: flex;
-            justify-content: center;
-            padding: 4px;
-            overflow-x: auto;
-        }
-
-        .tile-map {
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(var(--map-cols), var(--tile-size));
-            grid-template-rows: repeat(var(--map-rows), var(--tile-size));
-            border: 4px solid var(--pixel-border);
-            box-shadow: 0 4px 0 #000;
-            flex-shrink: 0;
-        }
-
-        .tile {
-            width: var(--tile-size);
-            height: var(--tile-size);
-            background-size: cover;
-            image-rendering: pixelated;
-            position: relative;
-        }
-
-        .tile.tree {
-            overflow: visible;
-            z-index: 3;
-        }
-
-        .tile.tree .tree-sprite {
+        #icons {
             position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: calc(var(--tile-size) * 1.35);
-            height: calc(var(--tile-size) * 2);
-            transform: translateX(-50%);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: bottom center;
-            image-rendering: pixelated;
-            pointer-events: none;
-        }
-
-        .tile.door {
-            cursor: pointer;
-            filter: drop-shadow(0 0 4px var(--door-color, var(--accent)));
-        }
-
-        .tile.door::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            box-shadow: inset 0 0 0 2px var(--door-color, var(--accent));
-            opacity: 0.55;
-        }
-
-        .door-badge {
-            position: absolute;
-            top: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(var(--tile-size) * 1.05);
-            height: calc(var(--tile-size) * 1.05);
-            border: 2px solid var(--door-color, var(--pixel-border));
-            background: #0f172a;
-            box-shadow: 0 3px 0 #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: calc(var(--tile-size) * 0.55);
-            overflow: hidden;
-            z-index: 6;
-            pointer-events: none;
-        }
-
-        .door-badge img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
-        }
-
-        .tile-label {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.45rem;
-            white-space: nowrap;
-            color: var(--door-color, var(--accent-2));
-            text-shadow: 2px 2px 0 #000;
-            pointer-events: none;
-        }
-
-        .character {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 32px;
-            height: 40px;
-            transform: translate(-50%, -100%);
-            transition: left 0.35s steps(6), top 0.35s steps(6);
-            z-index: 5;
-        }
-
-        .character.facing-left {
-            transform: translate(-50%, -100%) scaleX(-1);
-        }
-
-        .character .c-hair {
-            position: absolute;
-            top: -2px;
+            top: 8px;
             left: 8px;
-            width: 16px;
-            height: 6px;
-            background: #3a2a1a;
-        }
-
-        .character .c-head {
-            position: absolute;
-            top: 2px;
-            left: 8px;
-            width: 16px;
-            height: 14px;
-            background: #ffcf9c;
-            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.15);
-        }
-
-        .character .c-body {
-            position: absolute;
-            top: 16px;
-            left: 6px;
-            width: 20px;
-            height: 14px;
-            background: var(--accent-pink);
-            box-shadow: inset -3px -3px 0 rgba(0,0,0,0.2);
-        }
-
-        .character .c-leg {
-            position: absolute;
-            top: 30px;
-            width: 7px;
-            height: 10px;
-            background: #1e2a4a;
-        }
-
-        .character .c-leg.l { left: 7px; }
-        .character .c-leg.r { left: 18px; }
-
-        .character.walking .c-leg.l {
-            animation: walkL 0.35s steps(2) infinite;
-        }
-
-        .character.walking .c-leg.r {
-            animation: walkR 0.35s steps(2) infinite;
-        }
-
-        @keyframes walkL {
-            0%, 100% { top: 30px; height: 10px; }
-            50% { top: 28px; height: 8px; }
-        }
-
-        @keyframes walkR {
-            0%, 100% { top: 28px; height: 8px; }
-            50% { top: 30px; height: 10px; }
-        }
-
-        .game-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 14px;
-            padding: 20px 0 26px;
-            flex-wrap: wrap;
-        }
-
-        .dpad {
             display: grid;
-            grid-template-columns: repeat(3, 44px);
-            grid-template-rows: repeat(3, 44px);
+            grid-template-columns: repeat(2, 80px);
+            grid-auto-flow: column;
+            grid-template-rows: repeat(6, 84px);
             gap: 4px;
         }
 
-        .dpad .ctrl-btn {
-            width: 44px;
-            height: 44px;
-            font-size: 0.8rem;
+        .icon {
+            width: 80px;
+            height: 84px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 4px 2px;
+            outline: none;
         }
 
-        .ctrl-btn {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem;
-            width: 52px;
-            height: 52px;
-            background: #1e2a4a;
-            border: 3px solid var(--pixel-border);
-            box-shadow: 0 4px 0 #000;
-            color: var(--text-main);
+        .icon img, .icon svg {
+            width: 32px;
+            height: 32px;
+            image-rendering: pixelated;
+            filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, .4));
+        }
+
+        .icon .app-ico {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            object-fit: cover;
+            image-rendering: auto;
+        }
+
+        .icon span {
+            color: #fff;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.2;
+            padding: 1px 3px;
+            text-shadow: 1px 1px 0 #000;
+            max-width: 78px;
+        }
+
+        .icon.selected span {
+            background: var(--title-a);
+            outline: 1px dotted #ffff00;
+            text-shadow: none;
+        }
+
+        .icon.selected img, .icon.selected svg {
+            filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, .4)) brightness(.75) sepia(.6) hue-rotate(190deg) saturate(2.5);
+        }
+
+        /* --- Windows --- */
+        .window {
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            background: var(--face);
+            box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--hilight), inset -2px -2px var(--shadow), inset 2px 2px var(--light);
+            padding: 3px;
+            min-width: 260px;
+            width: 560px;
+            max-width: calc(100vw - 16px);
+            max-height: calc(100vh - var(--taskbar-h) - 16px);
+        }
+
+        .window.open { display: flex; }
+
+        .window.maximized {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .titlebar {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 18px;
+            padding: 2px 3px 2px 4px;
+            background: linear-gradient(90deg, var(--title-a), var(--title-b));
+            color: #fff;
+            font-weight: bold;
+            cursor: default;
+            touch-action: none;
+            flex: none;
+        }
+
+        .window.inactive .titlebar {
+            background: linear-gradient(90deg, var(--title-inactive-a), var(--title-inactive-b));
+            color: var(--face);
+        }
+
+        .titlebar img, .titlebar svg {
+            width: 16px;
+            height: 16px;
+            image-rendering: pixelated;
+            flex: none;
+        }
+
+        .titlebar .title {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 12px;
+        }
+
+        .titlebar button {
+            min-width: 16px;
+            min-height: 14px;
+            width: 16px;
+            height: 14px;
+            padding: 0;
+            font-size: 10px;
+            font-weight: bold;
+            line-height: 1;
+            font-family: Arial, sans-serif;
+        }
+
+        .titlebar button:active { padding: 1px 0 0 1px; }
+        .titlebar button.close { margin-left: 2px; }
+
+        .menubar {
+            display: flex;
+            gap: 2px;
+            padding: 2px 0;
+            font-size: 12px;
+            flex: none;
+        }
+
+        .menubar span {
+            padding: 1px 6px;
+        }
+
+        .menubar span:hover {
+            box-shadow: inset -1px -1px var(--shadow), inset 1px 1px var(--light);
+        }
+
+        .window-body {
+            flex: 1;
+            overflow: auto;
+            padding: 12px;
+            user-select: text;
+            min-height: 0;
+        }
+
+        .window-body.white {
+            background: #fff;
+            margin: 2px;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--shadow), inset -2px -2px var(--hilight), inset 2px 2px var(--dark);
+            padding: 10px 12px;
+        }
+
+        .statusbar {
+            display: flex;
+            gap: 3px;
+            padding-top: 3px;
+            font-size: 11px;
+            flex: none;
+        }
+
+        .statusbar span {
+            flex: 1;
+            padding: 2px 6px;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--shadow);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .statusbar span.short { flex: 0 0 120px; }
+
+        /* --- Content pieces --- */
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .project-header img, .project-header .emoji {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: var(--face);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            flex: none;
+            box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--light), inset -2px -2px var(--shadow), inset 2px 2px var(--hilight);
+        }
+
+        .project-header h2 { font-size: 16px; }
+        .project-header small { color: #444; }
+
+        fieldset {
+            margin: 10px 0;
+            padding: 8px 10px 10px;
+            border: 2px groove #dfdfdf;
+        }
+
+        legend { padding: 0 4px; }
+
+        .gallery {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px;
+            background: #fff;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--shadow), inset -2px -2px var(--hilight), inset 2px 2px var(--dark);
+        }
+
+        .gallery img {
+            height: 260px;
+            flex: none;
+            border: 1px solid var(--shadow);
+            cursor: zoom-in;
+            background: #eee;
+        }
+
+        .gallery img.wide { height: 220px; }
+
+        ul.features {
+            margin: 4px 0 4px;
+            padding-left: 18px;
+            line-height: 1.5;
+        }
+
+        .actions {
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            padding-top: 6px;
+        }
+
+        .skill {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            align-items: center;
+            gap: 10px;
+            margin: 6px 0;
+        }
+
+        .bar {
+            height: 16px;
+            padding: 2px;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--shadow), inset -2px -2px var(--hilight), inset 2px 2px var(--dark);
+            background: var(--face);
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: repeating-linear-gradient(90deg, var(--title-a) 0 8px, transparent 8px 10px);
+        }
+
+        .tabs {
+            display: flex;
+            position: relative;
+            z-index: 1;
+            padding-left: 2px;
+        }
+
+        .tab {
+            padding: 4px 10px 3px;
+            background: var(--face);
+            box-shadow: inset -1px 0 var(--dark), inset 1px 1px var(--light), inset -2px 0 var(--shadow);
             cursor: pointer;
+            margin-top: 2px;
+        }
+
+        .tab.active {
+            padding-bottom: 5px;
+            margin-top: 0;
+            margin-bottom: -2px;
+        }
+
+        .tabpanel {
+            display: none;
+            padding: 12px;
+            box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--light), inset -2px -2px var(--shadow), inset 2px 2px var(--hilight);
+        }
+
+        .tabpanel.active { display: block; }
+
+        .list-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 90px);
+            gap: 6px;
+        }
+
+        .list-view .icon span {
+            color: #000;
+            text-shadow: none;
+        }
+
+        .list-view .icon.selected span {
+            color: #fff;
+            background: var(--title-a);
+        }
+
+        .kv {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 4px 10px;
+            margin: 8px 0;
+            word-break: break-word;
+        }
+
+        .kv b { font-weight: bold; }
+
+        textarea.notepad {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            resize: none;
+            border: none;
+            font-family: "Lucida Console", "Courier New", monospace;
+            font-size: 13px;
+            background: #fff;
+            padding: 6px;
+            outline: none;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--shadow), inset -2px -2px var(--hilight), inset 2px 2px var(--dark);
+        }
+
+        #viewer-body {
+            padding: 4px;
+            background: #808080;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .ctrl-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 0 #000;
+        #viewer-body img {
+            max-width: 100%;
+            max-height: calc(100vh - 110px);
+            object-fit: contain;
         }
 
-        .ctrl-btn.select {
-            width: auto;
-            padding: 0 20px;
-            font-size: 0.6rem;
+        /* --- Taskbar --- */
+        #taskbar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: var(--taskbar-h);
+            background: var(--face);
+            box-shadow: inset 0 1px var(--light), inset 0 2px var(--hilight);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 3px 2px;
+            z-index: 10000;
         }
 
-        .ctrl-btn.mute {
-            background: #3a2a4a;
-            width: auto;
-            padding: 0 16px;
-            font-size: 1.1rem;
+        #start-btn {
+            font-weight: bold;
+            min-width: 56px;
+            padding: 2px 6px;
+            height: 22px;
+            gap: 3px;
         }
 
-        @media (max-width: 900px) {
-            .tile-map {
-                --tile-size: 30px;
-            }
+        #start-btn svg { width: 16px; height: 16px; }
+
+        .divider {
+            width: 2px;
+            height: 22px;
+            box-shadow: inset 1px 0 var(--shadow), inset -1px 0 var(--light);
+            margin: 0 2px;
+            flex: none;
         }
 
-        @media (max-width: 500px) {
-            .tile-map {
-                --tile-size: 24px;
-            }
+        #task-items {
+            flex: 1;
+            display: flex;
+            gap: 3px;
+            overflow: hidden;
+            min-width: 0;
         }
 
-        @media (max-width: 600px) {
-            .hero-title {
-                font-size: 1.6rem;
+        .task-item {
+            height: 22px;
+            min-width: 40px;
+            max-width: 160px;
+            flex: 1 1 120px;
+            justify-content: flex-start;
+            padding: 2px 6px;
+            font-weight: normal;
+            overflow: hidden;
+        }
+
+        .task-item span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-item img, .task-item svg { width: 16px; height: 16px; flex: none; }
+
+        .task-item.active {
+            font-weight: bold;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--dark), inset -2px -2px var(--hilight), inset 2px 2px var(--shadow);
+            background: repeating-conic-gradient(var(--hilight) 0 25%, var(--face) 0 50%) 0 0 / 2px 2px;
+            padding: 3px 5px 1px 7px;
+        }
+
+        #tray {
+            height: 22px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 8px;
+            box-shadow: inset -1px -1px var(--light), inset 1px 1px var(--shadow);
+            font-size: 11px;
+            flex: none;
+        }
+
+        #tray svg { width: 16px; height: 16px; }
+
+        /* --- Start menu --- */
+        #start-menu {
+            position: fixed;
+            left: 2px;
+            bottom: var(--taskbar-h);
+            width: 200px;
+            display: none;
+            background: var(--face);
+            box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--hilight), inset -2px -2px var(--shadow), inset 2px 2px var(--light);
+            padding: 3px;
+            z-index: 10001;
+        }
+
+        #start-menu.open { display: flex; }
+
+        #start-menu .side {
+            width: 24px;
+            background: linear-gradient(180deg, var(--title-inactive-a) 0%, var(--title-a) 100%);
+            color: var(--face);
+            font-weight: bold;
+            font-size: 16px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 6px 0;
+            letter-spacing: 1px;
+            flex: none;
+        }
+
+        #start-menu .side b { color: #fff; }
+
+        #start-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        #start-menu li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        #start-menu li img, #start-menu li svg {
+            width: 24px;
+            height: 24px;
+            image-rendering: pixelated;
+        }
+
+        #start-menu li img { image-rendering: auto; }
+
+        #start-menu li:hover {
+            background: var(--title-a);
+            color: #fff;
+        }
+
+        #start-menu li.sep {
+            padding: 0;
+            height: 2px;
+            margin: 2px 0;
+            box-shadow: inset 0 1px var(--shadow), inset 0 -1px var(--light);
+            cursor: default;
+        }
+
+        #start-menu li.sep:hover { background: none; }
+
+        /* --- Shutdown --- */
+        #shutdown {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            color: #ff8c00;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: "Lucida Console", "Courier New", monospace;
+            font-size: 22px;
+            z-index: 20000;
+            cursor: pointer;
+            padding: 20px;
+        }
+
+        #shutdown.open { display: flex; }
+        #shutdown small { display: block; margin-top: 30px; font-size: 13px; color: #777; }
+
+        /* --- Boot screen --- */
+        #boot {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            color: #c0c0c0;
+            z-index: 30000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 14px;
+            font-family: "Lucida Console", "Courier New", monospace;
+            font-size: 14px;
+            transition: opacity .3s;
+        }
+
+        #boot.hide { opacity: 0; pointer-events: none; }
+
+        #boot .logo {
+            font-family: var(--font);
+            font-size: 34px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #boot .logo b { color: #1084d0; }
+
+        #boot .progress {
+            width: 260px;
+            height: 14px;
+            border: 1px solid #c0c0c0;
+            padding: 2px;
+        }
+
+        #boot .progress i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: repeating-linear-gradient(90deg, #1084d0 0 8px, transparent 8px 10px);
+            animation: load 1.1s steps(20) forwards;
+        }
+
+        @keyframes load { to { width: 100%; } }
+
+        /* --- Mobile --- */
+        @media (max-width: 640px) {
+            #icons {
+                grid-template-columns: repeat(4, 76px);
+                grid-template-rows: repeat(3, 84px);
+                grid-auto-flow: row;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 2px;
             }
 
-            .download-footer {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+            .icon { width: 76px; }
+
+            .window {
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100%;
+                max-height: 100%;
             }
 
-            .hud-panel {
-                flex-direction: column;
-                text-align: center;
-            }
+            .window-body { padding: 10px; }
+            .gallery img { height: 200px; }
+            .skill { grid-template-columns: 110px 1fr; }
+            .task-item { flex: 1 1 60px; }
+            #tray { padding: 0 5px; }
+            #viewer-body img { max-height: calc(100vh - 60px); }
         }
     </style>
 </head>
 
 <body>
+    <!-- Boot splash -->
+    <div id="boot">
+        <div class="logo">Tiago<b>98</b></div>
+        <div>Starting portfolio...</div>
+        <div class="progress"><i></i></div>
+    </div>
 
-    <header>
-        <div class="container">
-            <h1 class="hero-title">Tiago Parente</h1>
-            <p class="hero-subtitle">Android Developer & Creative Coder crafting high-performance mobile experiences and
-                interactive games.</p>
-            <div class="social-links">
-                <a href="mailto:t.parente.32@gmail.com" class="btn-outline">Email</a>
-                <a href="https://github.com/TiagoParente32" class="btn-outline">GitHub</a>
-                <a href="https://www.linkedin.com/in/tiagoparente32" class="btn-outline">LinkedIn</a>
-                <a href="tiago_parente_cv.pdf" class="btn-outline">Download CV</a>
-            </div>
+    <!-- SVG icon sprites -->
+    <svg width="0" height="0" style="position:absolute">
+        <defs>
+            <symbol id="i-computer" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="3" y="3" width="26" height="19" fill="#c0c0c0"/>
+                <rect x="3" y="3" width="26" height="1" fill="#fff"/><rect x="3" y="3" width="1" height="19" fill="#fff"/>
+                <rect x="28" y="3" width="1" height="19" fill="#000"/><rect x="3" y="21" width="26" height="1" fill="#000"/>
+                <rect x="6" y="6" width="20" height="13" fill="#008080"/>
+                <rect x="7" y="7" width="8" height="2" fill="#fff"/><rect x="7" y="10" width="12" height="1" fill="#0ff"/>
+                <rect x="12" y="22" width="8" height="2" fill="#808080"/>
+                <rect x="8" y="24" width="16" height="4" fill="#c0c0c0"/><rect x="8" y="27" width="16" height="1" fill="#000"/>
+                <rect x="20" y="25" width="2" height="2" fill="#0f0"/>
+            </symbol>
+            <symbol id="i-folder" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="2" y="7" width="12" height="3" fill="#ffd700"/>
+                <rect x="2" y="9" width="28" height="18" fill="#ffd700"/>
+                <rect x="2" y="9" width="28" height="1" fill="#fff"/><rect x="2" y="26" width="28" height="1" fill="#806000"/>
+                <rect x="29" y="9" width="1" height="18" fill="#806000"/>
+                <rect x="2" y="13" width="28" height="14" fill="#ffe680"/>
+                <rect x="2" y="13" width="28" height="1" fill="#fff"/>
+            </symbol>
+            <symbol id="i-doc" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="6" y="2" width="18" height="28" fill="#fff"/>
+                <rect x="6" y="2" width="1" height="28" fill="#000"/><rect x="6" y="29" width="20" height="1" fill="#000"/>
+                <rect x="25" y="8" width="1" height="22" fill="#000"/><rect x="6" y="2" width="14" height="1" fill="#000"/>
+                <rect x="19" y="2" width="1" height="7" fill="#000"/><rect x="19" y="8" width="7" height="1" fill="#000"/>
+                <rect x="20" y="3" width="1" height="1" fill="#000"/><rect x="21" y="4" width="1" height="1" fill="#000"/><rect x="22" y="5" width="1" height="1" fill="#000"/><rect x="23" y="6" width="1" height="1" fill="#000"/><rect x="24" y="7" width="1" height="1" fill="#000"/>
+                <rect x="9" y="12" width="12" height="1" fill="#000"/><rect x="9" y="15" width="12" height="1" fill="#000"/>
+                <rect x="9" y="18" width="12" height="1" fill="#000"/><rect x="9" y="21" width="8" height="1" fill="#000"/>
+            </symbol>
+            <symbol id="i-pdf" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <use href="#i-doc"/>
+                <rect x="8" y="18" width="16" height="9" fill="#c00"/>
+                <rect x="10" y="20" width="12" height="5" fill="#fff"/>
+                <rect x="11" y="21" width="2" height="3" fill="#c00"/><rect x="15" y="21" width="2" height="3" fill="#c00"/><rect x="19" y="21" width="2" height="3" fill="#c00"/>
+            </symbol>
+            <symbol id="i-mail" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="2" y="7" width="28" height="18" fill="#fff"/>
+                <rect x="2" y="7" width="28" height="1" fill="#000"/><rect x="2" y="24" width="28" height="1" fill="#000"/>
+                <rect x="2" y="7" width="1" height="18" fill="#000"/><rect x="29" y="7" width="1" height="18" fill="#000"/>
+                <rect x="3" y="8" width="26" height="4" fill="#ffffc0"/>
+                <rect x="4" y="9" width="2" height="1" fill="#000"/><rect x="6" y="10" width="2" height="1" fill="#000"/><rect x="8" y="11" width="2" height="1" fill="#000"/><rect x="10" y="12" width="2" height="1" fill="#000"/><rect x="12" y="13" width="2" height="1" fill="#000"/><rect x="14" y="14" width="4" height="1" fill="#000"/>
+                <rect x="18" y="13" width="2" height="1" fill="#000"/><rect x="20" y="12" width="2" height="1" fill="#000"/><rect x="22" y="11" width="2" height="1" fill="#000"/><rect x="24" y="10" width="2" height="1" fill="#000"/><rect x="26" y="9" width="2" height="1" fill="#000"/>
+                <rect x="20" y="17" width="8" height="5" fill="#c00"/>
+            </symbol>
+            <symbol id="i-bin" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="7" y="7" width="18" height="22" fill="#c0c0c0"/>
+                <rect x="7" y="7" width="1" height="22" fill="#fff"/><rect x="24" y="7" width="1" height="22" fill="#000"/>
+                <rect x="7" y="28" width="18" height="1" fill="#000"/>
+                <rect x="5" y="5" width="22" height="3" fill="#dfdfdf"/><rect x="5" y="5" width="22" height="1" fill="#fff"/><rect x="5" y="7" width="22" height="1" fill="#808080"/>
+                <rect x="13" y="3" width="6" height="2" fill="#808080"/>
+                <rect x="10" y="10" width="2" height="16" fill="#808080"/><rect x="15" y="10" width="2" height="16" fill="#808080"/><rect x="20" y="10" width="2" height="16" fill="#808080"/>
+                <rect x="9" y="14" width="14" height="4" fill="#008080" opacity=".9"/>
+            </symbol>
+            <symbol id="i-help" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="4" y="4" width="24" height="24" fill="#fff"/><rect x="4" y="4" width="24" height="1" fill="#000"/><rect x="4" y="27" width="24" height="1" fill="#000"/><rect x="4" y="4" width="1" height="24" fill="#000"/><rect x="27" y="4" width="1" height="24" fill="#000"/>
+                <rect x="12" y="8" width="8" height="2" fill="#000080"/><rect x="10" y="10" width="3" height="3" fill="#000080"/><rect x="19" y="10" width="3" height="3" fill="#000080"/>
+                <rect x="17" y="13" width="3" height="2" fill="#000080"/><rect x="15" y="15" width="3" height="4" fill="#000080"/><rect x="15" y="21" width="3" height="3" fill="#000080"/>
+            </symbol>
+            <symbol id="i-game" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                <rect x="2" y="10" width="28" height="14" fill="#808080"/><rect x="2" y="10" width="28" height="1" fill="#fff"/><rect x="2" y="23" width="28" height="1" fill="#000"/>
+                <rect x="6" y="14" width="2" height="6" fill="#000"/><rect x="4" y="16" width="6" height="2" fill="#000"/>
+                <rect x="22" y="13" width="2" height="2" fill="#f00"/><rect x="25" y="16" width="2" height="2" fill="#0f0"/><rect x="19" y="16" width="2" height="2" fill="#00f"/><rect x="22" y="19" width="2" height="2" fill="#ff0"/>
+            </symbol>
+            <symbol id="i-win" viewBox="0 0 16 16">
+                <rect x="1" y="2" width="6" height="5" fill="#f00" transform="skewY(-8)"/>
+                <rect x="8" y="1" width="6" height="5" fill="#0a0" transform="skewY(-8)"/>
+                <rect x="1" y="8" width="6" height="5" fill="#00f" transform="skewY(-8)"/>
+                <rect x="8" y="7" width="6" height="5" fill="#ff0" transform="skewY(-8)"/>
+            </symbol>
+            <symbol id="i-speaker" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <rect x="2" y="6" width="3" height="4" fill="#000"/><rect x="5" y="4" width="2" height="8" fill="#000"/><rect x="7" y="2" width="1" height="12" fill="#000"/>
+                <rect x="10" y="5" width="1" height="6" fill="#000"/><rect x="12" y="3" width="1" height="10" fill="#000"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <div id="desktop">
+        <div id="icons">
+            <div class="icon" data-open="win-about"><svg><use href="#i-computer"/></svg><span>About Me</span></div>
+            <div class="icon" data-open="win-projects"><svg><use href="#i-folder"/></svg><span>My Projects</span></div>
+            <div class="icon" data-open="win-readme"><svg><use href="#i-doc"/></svg><span>readme.txt</span></div>
+            <div class="icon" data-href="tiago_parente_cv.pdf"><svg><use href="#i-pdf"/></svg><span>Tiago_CV.pdf</span></div>
+            <div class="icon" data-open="win-contact"><svg><use href="#i-mail"/></svg><span>Contact</span></div>
+            <div class="icon" data-open="win-bin"><svg><use href="#i-bin"/></svg><span>Recycle Bin</span></div>
+            <div class="icon" data-open="win-openproxy"><img class="app-ico" src="icons/openproxy_icon.png" alt=""><span>OpenProxy</span></div>
+            <div class="icon" data-open="win-michord"><img class="app-ico" src="icons/michord_icon.png" alt=""><span>MiChord!</span></div>
+            <div class="icon" data-open="win-homify"><img class="app-ico" src="icons/homify_icon.png" alt=""><span>Homify</span></div>
+            <div class="icon" data-open="win-refits"><img class="app-ico" src="icons/refit_icon.png" alt=""><span>Re:Fits</span></div>
+            <div class="icon" data-open="win-projectv"><svg><use href="#i-game"/></svg><span>Project V</span></div>
         </div>
-    </header>
 
-    <main class="container">
-
-        <h2 class="section-title">Featured Projects</h2>
-
-        <div class="game-world">
-            <p class="game-hint">Walk with <kbd>▲</kbd><kbd>▼</kbd><kbd>◀</kbd><kbd>▶</kbd> / <kbd>WASD</kbd> and walk
-                into a door to open a project! Press <kbd>ENTER</kbd> / <kbd>SPACE</kbd> too.</p>
-
-            <div class="hud-panel" id="hud-panel">
-                <div class="hud-icon" id="hud-icon">🔒</div>
-                <div class="hud-text">
-                    <h3 id="hud-title">OpenProxy</h3>
-                    <p id="hud-desc">A fast, modern network debugging proxy for developers.</p>
-                    <span class="hud-action" id="hud-action">▶ Walk into the door to enter</span>
-                </div>
-            </div>
-
-            <div class="tile-map-wrap">
-                <div class="tile-map" id="tile-map">
-                    <div class="character" id="character">
-                        <div class="c-hair"></div>
-                        <div class="c-head"></div>
-                        <div class="c-body"></div>
-                        <div class="c-leg l"></div>
-                        <div class="c-leg r"></div>
+        <!-- ===== Welcome ===== -->
+        <div class="window" id="win-welcome" data-title="Welcome" data-icon="#i-win" style="width:460px">
+            <div class="window-body" style="display:flex; gap:16px; align-items:flex-start">
+                <svg style="width:48px;height:48px;flex:none"><use href="#i-win"/></svg>
+                <div style="flex:1">
+                    <h2 style="font-size:18px; margin-bottom:8px">Welcome to Tiago's Desktop</h2>
+                    <p>Hi, I'm <b>Tiago Parente</b>, an Android Developer &amp; Creative Coder.</p>
+                    <p>This portfolio works like an old desktop: <b>double-click</b> the icons to open my apps, drag the windows around, and poke at the Start menu.</p>
+                    <p style="color:#444">Tip: on a phone, a single tap opens things.</p>
+                    <div class="actions">
+                        <button data-open="win-projects">Show my projects</button>
+                        <button class="primary" data-close>Close</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="game-controls">
-                <div class="dpad">
-                    <span></span>
-                    <button class="ctrl-btn" id="ctrl-up" aria-label="Move up">▲</button>
-                    <span></span>
-                    <button class="ctrl-btn" id="ctrl-left" aria-label="Move left">◀</button>
-                    <button class="ctrl-btn select" id="ctrl-select" aria-label="Open project">OK</button>
-                    <button class="ctrl-btn" id="ctrl-right" aria-label="Move right">▶</button>
-                    <span></span>
-                    <button class="ctrl-btn" id="ctrl-down" aria-label="Move down">▼</button>
-                    <span></span>
+        <!-- ===== About ===== -->
+        <div class="window" id="win-about" data-title="About Me - Properties" data-icon="#i-computer" style="width:520px">
+            <div class="window-body">
+                <div class="tabs">
+                    <span class="tab active" data-tab="general">General</span>
+                    <span class="tab" data-tab="skills">Skills</span>
+                    <span class="tab" data-tab="experience">Experience</span>
                 </div>
-                <button class="ctrl-btn mute" id="ctrl-mute" aria-label="Toggle sound">🔊 SOUND</button>
+                <div class="tabpanel active" data-panel="general">
+                    <div style="display:flex; gap:14px; align-items:flex-start">
+                        <svg style="width:48px;height:48px;flex:none"><use href="#i-computer"/></svg>
+                        <div>
+                            <h2 style="font-size:16px; margin-bottom:6px">Tiago Parente</h2>
+                            <p>Android Developer &amp; Creative Coder crafting high-performance mobile experiences and interactive games.</p>
+                            <p>I build native Android apps with Kotlin and Jetpack Compose, cross-platform apps with Flutter, desktop tools, and games in Unity. I like shipping things that feel fast and look good.</p>
+                        </div>
+                    </div>
+                    <div class="kv">
+                        <b>Role:</b><span>Android Developer</span>
+                        <b>Focus:</b><span>Mobile apps, desktop tooling, games</span>
+                        <b>Status:</b><span>Building things</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn" href="tiago_parente_cv.pdf" target="_blank" rel="noopener">Download CV</a>
+                        <button data-open="win-contact">Contact</button>
+                        <button class="primary" data-close>OK</button>
+                    </div>
+                </div>
+                <div class="tabpanel" data-panel="skills">
+                    <p><b>Technical Expertise</b></p>
+                    <div class="skill"><span>Kotlin</span><div class="bar"><i style="width:95%"></i></div></div>
+                    <div class="skill"><span>Jetpack Compose</span><div class="bar"><i style="width:92%"></i></div></div>
+                    <div class="skill"><span>Flutter &amp; Dart</span><div class="bar"><i style="width:80%"></i></div></div>
+                    <div class="skill"><span>Unity &amp; C#</span><div class="bar"><i style="width:75%"></i></div></div>
+                    <div class="skill"><span>MVVM / Clean Arch</span><div class="bar"><i style="width:90%"></i></div></div>
+                    <div class="skill"><span>Firebase</span><div class="bar"><i style="width:82%"></i></div></div>
+                    <div class="skill"><span>Room &amp; SQLite</span><div class="bar"><i style="width:88%"></i></div></div>
+                    <div class="skill"><span>CI/CD &amp; Docker</span><div class="bar"><i style="width:70%"></i></div></div>
+                    <div class="actions"><button class="primary" data-close>OK</button></div>
+                </div>
+                <div class="tabpanel" data-panel="experience">
+                    <p>Five shipped or in-progress projects live in <b>My Projects</b>:</p>
+                    <ul class="features">
+                        <li><b>OpenProxy</b> - open source desktop network debugging proxy</li>
+                        <li><b>MiChord!</b> - MIDI chord instrument for Android</li>
+                        <li><b>Homify</b> - roommate chores &amp; expenses, on Google Play</li>
+                        <li><b>Re:Fits</b> - offline-first wardrobe manager</li>
+                        <li><b>Project V</b> - Unity roguelike (WIP)</li>
+                    </ul>
+                    <p>Full work history is in the CV.</p>
+                    <div class="actions">
+                        <a class="btn" href="tiago_parente_cv.pdf" target="_blank" rel="noopener">Open CV</a>
+                        <button class="primary" data-close>OK</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title">Technical Expertise</h2>
-        <div class="stack-list">
-            <div class="stack-item"><span>✦</span> Kotlin</div>
-            <div class="stack-item"><span>✦</span> Jetpack Compose</div>
-            <div class="stack-item"><span>✦</span> Flutter & Dart</div>
-            <div class="stack-item"><span>✦</span> Unity & C#</div>
-            <div class="stack-item"><span>✦</span> MVVM / Clean Arch</div>
-            <div class="stack-item"><span>✦</span> Firebase</div>
-            <div class="stack-item"><span>✦</span> Room & SQLite</div>
-            <div class="stack-item"><span>✦</span> CI/CD & Docker</div>
+        <!-- ===== Projects folder ===== -->
+        <div class="window" id="win-projects" data-title="My Projects" data-icon="#i-folder" style="width:520px">
+            <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+            <div class="window-body white">
+                <div class="list-view">
+                    <div class="icon" data-open="win-openproxy"><img class="app-ico" src="icons/openproxy_icon.png" alt=""><span>OpenProxy</span></div>
+                    <div class="icon" data-open="win-michord"><img class="app-ico" src="icons/michord_icon.png" alt=""><span>MiChord!</span></div>
+                    <div class="icon" data-open="win-homify"><img class="app-ico" src="icons/homify_icon.png" alt=""><span>Homify</span></div>
+                    <div class="icon" data-open="win-refits"><img class="app-ico" src="icons/refit_icon.png" alt=""><span>Re:Fits</span></div>
+                    <div class="icon" data-open="win-projectv"><svg><use href="#i-game"/></svg><span>Project V</span></div>
+                </div>
+            </div>
+            <div class="statusbar"><span>5 object(s)</span><span class="short">My Computer</span></div>
         </div>
 
-    </main>
-
-    <div id="modal-homify" class="modal-overlay" onclick="closeModal(event, 'modal-homify')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeModalDirect('modal-homify')">&times;</button>
-            <div class="project-header">
-                <div class="app-icon">
-                    <img src="icons/homify_icon.png" alt="Homify Icon"
-                        onerror="this.style.display='none'; this.parentNode.innerHTML='🏠'" />
+        <!-- ===== OpenProxy ===== -->
+        <div class="window" id="win-openproxy" data-title="OpenProxy" data-img="icons/openproxy_icon.png" style="width:640px">
+            <div class="menubar"><span>File</span><span>View</span><span>Help</span></div>
+            <div class="window-body">
+                <div class="project-header">
+                    <img src="icons/openproxy_icon.png" alt="OpenProxy icon">
+                    <div><h2>OpenProxy</h2><small>Desktop Application · Electron + Vue 3 · Open Source</small></div>
                 </div>
-                <div>
-                    <h2 style="margin:0">Homify</h2>
-                    <span class="project-type">Mobile Application</span>
+                <p>OpenProxy is a fast, modern network debugging proxy built for developers. It combines the raw power of mitmproxy with a sleek, native-feeling desktop UI. Perfect for inspecting HTTP/HTTPS traffic, mocking API responses, rewriting URLs, and testing network conditions.</p>
+                <fieldset>
+                    <legend>Key Features</legend>
+                    <ul class="features">
+                        <li><b>Traffic Interception</b> - view, inspect, and filter HTTP/HTTPS requests in real time</li>
+                        <li><b>Map Local (Mocking)</b> - trick your app into receiving custom JSON/HTML responses</li>
+                        <li><b>Map Remote (Rewrites)</b> - transparently route URLs to localhost dev servers</li>
+                        <li><b>Live Breakpoints</b> - pause requests mid-flight, edit headers and bodies</li>
+                        <li><b>VPN Mode</b> - route device traffic through a WireGuard tunnel</li>
+                        <li><b>Smart Android Setup</b> - 1-click ADB integration with auto-update</li>
+                        <li><b>Network Throttling</b> - simulate various network conditions</li>
+                    </ul>
+                </fieldset>
+                <fieldset>
+                    <legend>Screenshots</legend>
+                    <div class="gallery">
+                        <img class="wide" src="open-proxy/example.png" alt="OpenProxy interface 1">
+                        <img class="wide" src="open-proxy/example2.png" alt="OpenProxy interface 2">
+                    </div>
+                </fieldset>
+                <div class="actions">
+                    <a class="btn primary" href="https://github.com/TiagoParente32/open-proxy" target="_blank" rel="noopener">View on GitHub</a>
+                    <button data-close>Close</button>
                 </div>
             </div>
-            <p>Homify solves the friction of living with roommates. Key features include an automated chore rotation
-                system and a ledger for splitting shared costs like rent and groceries.</p>
+            <div class="statusbar"><span>Open source project</span><span class="short">GitHub</span></div>
+        </div>
 
-            <h4>Prints</h4>
-            <div class="slider-container">
-                <button class="slider-nav prev-btn" onclick="sideScroll('gallery-homify', 'left')">❮</button>
-                <button class="slider-nav next-btn" onclick="sideScroll('gallery-homify', 'right')">❯</button>
-
-                <div class="media-gallery" id="gallery-homify">
-                    <img src="homify/Hotpot 0.png" alt="Screen 1">
-                    <img src="homify/Hotpot 1.png" alt="Screen 2">
-                    <img src="homify/Hotpot 2.png" alt="Screen 3">
-                    <img src="homify/Hotpot 3.png" alt="Screen 4">
-                    <img src="homify/Hotpot 4.png" alt="Screen 5">
+        <!-- ===== MiChord ===== -->
+        <div class="window" id="win-michord" data-title="MiChord!" data-img="icons/michord_icon.png" style="width:600px">
+            <div class="menubar"><span>File</span><span>View</span><span>Help</span></div>
+            <div class="window-body">
+                <div class="project-header">
+                    <img src="icons/michord_icon.png" alt="MiChord! icon">
+                    <div><h2>MiChord!</h2><small>Mobile Application · Android · v1.0.2</small></div>
+                </div>
+                <p>MiChord! turns your phone into a MIDI chord instrument, heavily inspired by HiChord. Tap chord pads to trigger rich voicings, sequence progressions, and send everything out over MIDI to your DAW or hardware synth.</p>
+                <fieldset>
+                    <legend>Screenshots</legend>
+                    <div class="gallery">
+                        <img src="MiChord!/Screenshot_20260710_230453.png" alt="MiChord! screen 1">
+                        <img src="MiChord!/Screenshot_20260710_230535.png" alt="MiChord! screen 2">
+                    </div>
+                </fieldset>
+                <div class="actions">
+                    <a class="btn" href="michord-privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+                    <a class="btn primary" href="downloads/michord-1.0.2.apk">Download APK</a>
+                    <button data-close>Close</button>
                 </div>
             </div>
+            <div class="statusbar"><span>Version 1.0.2</span><span class="short">APK · Android</span></div>
+        </div>
 
-            <div class="download-footer">
-                <div><strong>Get it on Google Play</strong><br><small>Available now</small></div>
-                <a href="https://play.google.com/store/apps/details?id=com.homify.app&hl=en" target="_blank"
-                    rel="noopener noreferrer" class="btn-outline" style="background:var(--accent); color:#000">Download</a>
+        <!-- ===== Homify ===== -->
+        <div class="window" id="win-homify" data-title="Homify" data-img="icons/homify_icon.png" style="width:600px">
+            <div class="menubar"><span>File</span><span>View</span><span>Help</span></div>
+            <div class="window-body">
+                <div class="project-header">
+                    <img src="icons/homify_icon.png" alt="Homify icon">
+                    <div><h2>Homify</h2><small>Mobile Application · Available on Google Play</small></div>
+                </div>
+                <p>Homify solves the friction of living with roommates. Key features include an automated chore rotation system and a ledger for splitting shared costs like rent and groceries.</p>
+                <fieldset>
+                    <legend>Prints</legend>
+                    <div class="gallery">
+                        <img src="homify/Hotpot 0.png" alt="Homify screen 1">
+                        <img src="homify/Hotpot 1.png" alt="Homify screen 2">
+                        <img src="homify/Hotpot 2.png" alt="Homify screen 3">
+                        <img src="homify/Hotpot 3.png" alt="Homify screen 4">
+                        <img src="homify/Hotpot 4.png" alt="Homify screen 5">
+                    </div>
+                </fieldset>
+                <div class="actions">
+                    <a class="btn" href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+                    <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.homify.app&hl=en" target="_blank" rel="noopener">Get it on Google Play</a>
+                    <button data-close>Close</button>
+                </div>
             </div>
+            <div class="statusbar"><span>Available now</span><span class="short">Google Play</span></div>
+        </div>
+
+        <!-- ===== Re:Fits ===== -->
+        <div class="window" id="win-refits" data-title="Re:Fits" data-img="icons/refit_icon.png" style="width:600px">
+            <div class="menubar"><span>File</span><span>View</span><span>Help</span></div>
+            <div class="window-body">
+                <div class="project-header">
+                    <img src="icons/refit_icon.png" alt="Re:Fits icon">
+                    <div><h2>Re:Fits</h2><small>Mobile Application · Jetpack Compose + Room · v1.0.4-6</small></div>
+                </div>
+                <p>Built with Jetpack Compose and Room for an offline-first experience. It uses Computer Vision concepts to help users categorize their wardrobe items from photos.</p>
+                <fieldset>
+                    <legend>Screenshots</legend>
+                    <div class="gallery">
+                        <img src="refits/screenshot1.png" alt="Re:Fits screen 1">
+                        <img src="refits/screenshot2.png" alt="Re:Fits screen 2">
+                        <img src="refits/screenshot3.png" alt="Re:Fits screen 3">
+                        <img src="refits/screenshot4.png" alt="Re:Fits screen 4">
+                        <img src="refits/screenshot5.png" alt="Re:Fits screen 5">
+                    </div>
+                </fieldset>
+                <div class="actions">
+                    <a class="btn primary" href="downloads/refits-1.0.4-6.apk">Download APK</a>
+                    <button data-close>Close</button>
+                </div>
+            </div>
+            <div class="statusbar"><span>Version 1.0.4-6</span><span class="short">APK · Android</span></div>
+        </div>
+
+        <!-- ===== Project V ===== -->
+        <div class="window" id="win-projectv" data-title="Project V (WIP)" data-icon="#i-game" style="width:600px">
+            <div class="menubar"><span>File</span><span>View</span><span>Help</span></div>
+            <div class="window-body">
+                <div class="project-header">
+                    <div class="emoji">🎮</div>
+                    <div><h2>Project V</h2><small>Game · Unity + C# · Work in progress</small></div>
+                </div>
+                <p>A fast-paced Unity 3D roguelike with dynamic scaling and complex ability systems. I focused on writing optimized C# scripts for enemy AI pathfinding and dynamic lighting shaders that work smoothly on mobile hardware.</p>
+                <fieldset>
+                    <legend>Preview</legend>
+                    <div class="gallery">
+                        <img class="wide" src="Project V/v.png" alt="Project V gameplay">
+                    </div>
+                </fieldset>
+                <div class="actions">
+                    <button disabled>Play (coming soon)</button>
+                    <button data-close>Close</button>
+                </div>
+            </div>
+            <div class="statusbar"><span>Status: in development</span><span class="short">Unity</span></div>
+        </div>
+
+        <!-- ===== Contact ===== -->
+        <div class="window" id="win-contact" data-title="Contact - Address Book" data-icon="#i-mail" style="width:440px">
+            <div class="window-body">
+                <div style="display:flex; gap:14px; align-items:flex-start">
+                    <svg style="width:40px;height:40px;flex:none"><use href="#i-mail"/></svg>
+                    <div style="flex:1; min-width:0">
+                        <p>Want to work together or just say hi? Pick a channel:</p>
+                        <div class="kv">
+                            <b>E-mail:</b><a href="mailto:t.parente.32@gmail.com">t.parente.32@gmail.com</a>
+                            <b>GitHub:</b><a href="https://github.com/TiagoParente32" target="_blank" rel="noopener">github.com/TiagoParente32</a>
+                            <b>LinkedIn:</b><a href="https://www.linkedin.com/in/tiagoparente32" target="_blank" rel="noopener">linkedin.com/in/tiagoparente32</a>
+                            <b>CV:</b><a href="tiago_parente_cv.pdf" target="_blank" rel="noopener">tiago_parente_cv.pdf</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a class="btn primary" href="mailto:t.parente.32@gmail.com">Send E-mail</a>
+                    <button data-close>Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== readme.txt ===== -->
+        <div class="window" id="win-readme" data-title="readme.txt - Notepad" data-icon="#i-doc" style="width:480px; height:380px">
+            <div class="menubar"><span>File</span><span>Edit</span><span>Search</span><span>Help</span></div>
+            <div class="window-body" style="padding:2px; display:flex">
+<textarea class="notepad" readonly spellcheck="false">TIAGO PARENTE - README
+======================
+
+Hi! Thanks for stopping by.
+
+I'm an Android developer who also likes building
+desktop tools and games. This site is a small
+Windows 98 tribute: everything you see is plain
+HTML, CSS and JavaScript, no frameworks.
+
+WHAT TO CLICK
+  * My Projects  - all the apps I've built
+  * About Me     - bio and skills
+  * Contact      - email, GitHub, LinkedIn
+  * Tiago_CV.pdf - my resume
+
+SHORTCUTS
+  * Double-click an icon to open it
+  * Drag a window by its title bar
+  * Esc closes the active window
+
+(c) 2026 Tiago Parente. Developed with passion.
+</textarea>
+            </div>
+        </div>
+
+        <!-- ===== Recycle bin ===== -->
+        <div class="window" id="win-bin" data-title="Recycle Bin" data-icon="#i-bin" style="width:400px">
+            <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+            <div class="window-body white" style="min-height:140px">
+                <div class="list-view">
+                    <div class="icon" data-open="win-old"><svg><use href="#i-doc"/></svg><span>old_portfolio.html</span></div>
+                    <div class="icon" data-open="win-old"><svg><use href="#i-doc"/></svg><span>bugs.txt</span></div>
+                </div>
+            </div>
+            <div class="statusbar"><span>2 object(s)</span><span class="short">0 bytes</span></div>
+        </div>
+
+        <div class="window" id="win-old" data-title="Recycle Bin" data-icon="#i-help" style="width:360px">
+            <div class="window-body" style="display:flex; gap:14px; align-items:center">
+                <svg style="width:32px;height:32px;flex:none"><use href="#i-help"/></svg>
+                <div style="flex:1">
+                    <p>This item has been deleted and cannot be restored.</p>
+                    <div class="actions"><button class="primary" data-close>OK</button></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Image viewer ===== -->
+        <div class="window" id="win-viewer" data-title="Image Preview" data-icon="#i-doc" style="width:auto">
+            <div class="window-body" id="viewer-body"><img id="viewer-img" src="" alt="Preview"></div>
         </div>
     </div>
 
-    <div id="modal-michord" class="modal-overlay" onclick="closeModal(event, 'modal-michord')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeModalDirect('modal-michord')">&times;</button>
-            <div class="project-header">
-                <div class="app-icon">
-                    <img src="icons/michord_icon.png" alt="MiChord! Icon"
-                        onerror="this.style.display='none'; this.parentNode.innerHTML='🎹'" />
-                </div>
-                <div>
-                    <h2 style="margin:0">MiChord!</h2>
-                    <span class="project-type">Mobile Application</span>
-                </div>
-            </div>
-            <p>MiChord! turns your phone into a MIDI chord instrument, heavily inspired by HiChord. Tap chord pads to
-                trigger rich voicings, sequence progressions, and send everything out over MIDI to your DAW or
-                hardware synth.</p>
-
-            <h4>Screenshots</h4>
-            <div class="slider-container">
-                <button class="slider-nav prev-btn" onclick="sideScroll('gallery-michord', 'left')">❮</button>
-                <button class="slider-nav next-btn" onclick="sideScroll('gallery-michord', 'right')">❯</button>
-
-                <div class="media-gallery" id="gallery-michord">
-                    <img src="MiChord!/Screenshot_20260710_230453.png" alt="MiChord! Screen 1">
-                    <img src="MiChord!/Screenshot_20260710_230535.png" alt="MiChord! Screen 2">
-                </div>
-            </div>
-
-            <div class="download-footer">
-                <div><strong>Download Build</strong><br><small>Version 1.0.2</small></div>
-                <a href="downloads/michord-1.0.2.apk" class="btn-outline"
-                    style="background:var(--accent); color:#000">Download APK</a>
-            </div>
-        </div>
+    <!-- ===== Taskbar ===== -->
+    <div id="taskbar">
+        <button id="start-btn"><svg><use href="#i-win"/></svg>Start</button>
+        <div class="divider"></div>
+        <div id="task-items"></div>
+        <div id="tray"><svg><use href="#i-speaker"/></svg><span id="clock">00:00</span></div>
     </div>
 
-    <div id="modal-refits" class="modal-overlay" onclick="closeModal(event, 'modal-refits')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeModalDirect('modal-refits')">&times;</button>
-            <div class="project-header">
-                <div class="app-icon">
-                    <img src="icons/refit_icon.png" alt="Re:Fits Icon"
-                        onerror="this.style.display='none'; this.parentNode.innerHTML='👕'" />
-
-                </div>
-                <div>
-                    <h2 style="margin:0">Re:Fits</h2>
-                    <span class="project-type">Mobile Application</span>
-                </div>
-            </div>
-            <p>Built with Jetpack Compose and Room for an offline-first experience. It uses Computer Vision concepts to
-                help users categorize their wardrobe items from photos.</p>
-            <div class="slider-container">
-                <button class="slider-nav prev-btn" onclick="sideScroll('refits-homify', 'left')">❮</button>
-                <button class="slider-nav next-btn" onclick="sideScroll('refits-homify', 'right')">❯</button>
-
-                <div class="media-gallery" id="refits-homify">
-                    <img src="refits/screenshot1.png" alt="UI Kit">
-                    <img src="refits/screenshot2.png" alt="UI Kit">
-                    <img src="refits/screenshot3.png" alt="UI Kit">
-                    <img src="refits/screenshot4.png" alt="UI Kit">
-                    <img src="refits/screenshot5.png" alt="UI Kit">
-                </div>
-            </div>
-
-            <div class="download-footer">
-                <div><strong>Download Build</strong><br><small>Version 1.0.4-6</small></div>
-                <a href="downloads/refits-1.0.4-6.apk" class="btn-outline"
-                    style="background:var(--accent); color:#000">Download APK</a>
-            </div>
-        </div>
+    <div id="start-menu">
+        <div class="side"><b>Tiago</b>98</div>
+        <ul>
+            <li data-open="win-projects"><svg><use href="#i-folder"/></svg>Programs</li>
+            <li data-href="tiago_parente_cv.pdf"><svg><use href="#i-pdf"/></svg>Documents (CV)</li>
+            <li data-open="win-about"><svg><use href="#i-computer"/></svg>About Me</li>
+            <li data-open="win-contact"><svg><use href="#i-mail"/></svg>Contact</li>
+            <li data-open="win-readme"><svg><use href="#i-help"/></svg>Help</li>
+            <li class="sep"></li>
+            <li data-open="win-openproxy"><img src="icons/openproxy_icon.png" alt="" style="border-radius:3px">OpenProxy</li>
+            <li data-open="win-michord"><img src="icons/michord_icon.png" alt="" style="border-radius:3px">MiChord!</li>
+            <li data-open="win-homify"><img src="icons/homify_icon.png" alt="" style="border-radius:3px">Homify</li>
+            <li data-open="win-refits"><img src="icons/refit_icon.png" alt="" style="border-radius:3px">Re:Fits</li>
+            <li data-open="win-projectv"><svg><use href="#i-game"/></svg>Project V</li>
+            <li class="sep"></li>
+            <li id="shutdown-item"><svg><use href="#i-computer"/></svg>Shut Down...</li>
+        </ul>
     </div>
 
-    <div id="modal-projectv" class="modal-overlay" onclick="closeModal(event, 'modal-projectv')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeModalDirect('modal-projectv')">&times;</button>
-            <div class="project-header">
-                <div class="app-icon">🎮</div>
-                <div>
-                    <h2 style="margin:0">Project V (WIP)</h2>
-                    <span class="project-type">Game</span>
-                </div>
-            </div>
-            <p>A fast-paced Unity game. I focused on writing optimized C# scripts for enemy AI pathfinding and dynamic
-                lighting shaders that work smoothly on mobile hardware.</p>
-            <div class="slider-container">
-                <button class="slider-nav prev-btn" onclick="sideScroll('project-v', 'left')">❮</button>
-                <button class="slider-nav next-btn" onclick="sideScroll('project-v', 'right')">❯</button>
-                <div class="media-gallery" id="project-v">
-                    <!-- <video controls>
-                        <source src="videos/gameplay.mp4" type="video/mp4">
-                    </video> -->
-                    <img src="Project V/v.png" alt="UI Kit">
-
-                </div>
-            </div>
-            <!-- <div class="download-footer">
-                <a href="#" class="btn-outline" style="background:var(--accent); color:#000">Play on Itch.io</a>
-            </div> -->
+    <div id="shutdown">
+        <div>
+            It's now safe to turn off<br>your computer.
+            <small>(click anywhere to reboot)</small>
         </div>
     </div>
-
-    <div id="modal-openproxy" class="modal-overlay" onclick="closeModal(event, 'modal-openproxy')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="close-modal" onclick="closeModalDirect('modal-openproxy')">&times;</button>
-            <div class="project-header">
-                <div class="app-icon">
-                    <img src="icons/openproxy_icon.png" alt="OpenProxy Icon"
-                        onerror="this.style.display='none'; this.parentNode.innerHTML='🔒'" />
-                </div>
-                <div>
-                    <h2 style="margin:0">OpenProxy</h2>
-                    <span class="project-type">Desktop Application</span>
-                </div>
-            </div>
-            <p>OpenProxy is a fast, modern network debugging proxy built for developers. It combines the raw power of mitmproxy with a sleek, native-feeling desktop UI. Perfect for inspecting HTTP/HTTPS traffic, mocking API responses, rewriting URLs, and testing network conditions.</p>
-            
-            <h4>Key Features</h4>
-            <ul>
-                <li><strong>Traffic Interception</strong> - View, inspect, and filter HTTP/HTTPS requests in real-time</li>
-                <li><strong>Map Local (Mocking)</strong> - Trick your app into receiving custom JSON/HTML responses</li>
-                <li><strong>Map Remote (Rewrites)</strong> - Transparently route URLs to localhost dev servers</li>
-                <li><strong>Live Breakpoints</strong> - Pause requests mid-flight, edit headers/bodies</li>
-                <li><strong>VPN Mode</strong> - Route device traffic through WireGuard tunnel</li>
-                <li><strong>Smart Android Setup</strong> - 1-click ADB integration with auto-update</li>
-                <li><strong>Network Throttling</strong> - Simulate various network conditions</li>
-            </ul>
-
-            <h4>Screenshots</h4>
-            <div class="slider-container">
-                <button class="slider-nav prev-btn" onclick="sideScroll('openproxy-gallery', 'left')">❮</button>
-                <button class="slider-nav next-btn" onclick="sideScroll('openproxy-gallery', 'right')">❯</button>
-                <div class="media-gallery" id="openproxy-gallery">
-                    <img src="open-proxy/example.png" alt="OpenProxy Interface 1">
-                    <img src="open-proxy/example2.png" alt="OpenProxy Interface 2">
-                </div>
-            </div>
-
-            <div class="download-footer">
-                <div><strong>GitHub Repository</strong><br><small>Open Source Project</small></div>
-                <a href="https://github.com/TiagoParente32/open-proxy" class="btn-outline" style="background:var(--accent); color:#000">View on GitHub</a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 Tiago Parente · Developed with passion</p>
-    </footer>
 
     <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(event, id) {
-            if (event.target.id === id) {
-                closeModalDirect(id);
-            }
-        }
-
-        function closeModalDirect(id) {
-            document.getElementById(id).style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function sideScroll(elementId, direction) {
-            const container = document.getElementById(elementId);
-            const scrollAmount = container.clientWidth * 0.8; // Scrolls 80% of the view width
-
-            if (direction === 'left') {
-                container.scrollLeft -= scrollAmount;
-            } else {
-                container.scrollLeft += scrollAmount;
-            }
-        }
-
-        // --- CHIPTUNE SOUND EFFECTS (Web Audio, no external files) ---
-        const SoundFX = (function () {
-            let ctx = null;
-            let muted = localStorage.getItem('portfolio-sound-muted') === 'true';
-
-            function ensureCtx() {
-                if (!ctx) {
-                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                    if (AudioCtx) ctx = new AudioCtx();
-                }
-                if (ctx && ctx.state === 'suspended') ctx.resume();
-                return ctx;
-            }
-
-            function tone(freq, duration, type, volume, delay) {
-                if (muted) return;
-                const audioCtx = ensureCtx();
-                if (!audioCtx) return;
-                const startTime = audioCtx.currentTime + (delay || 0);
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = type || 'square';
-                osc.frequency.setValueAtTime(freq, startTime);
-                gain.gain.setValueAtTime(0, startTime);
-                gain.gain.linearRampToValueAtTime(volume || 0.12, startTime + 0.01);
-                gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(startTime);
-                osc.stop(startTime + duration + 0.02);
-            }
-
-            return {
-                step: () => tone(140 + Math.random() * 40, 0.07, 'square', 0.08),
-                bump: () => tone(90, 0.09, 'sine', 0.1),
-                select: () => { tone(523, 0.09, 'square', 0.14); tone(784, 0.12, 'square', 0.14, 0.08); },
-                close: () => tone(300, 0.08, 'triangle', 0.1),
-                isMuted: () => muted,
-                toggleMute: () => {
-                    muted = !muted;
-                    localStorage.setItem('portfolio-sound-muted', muted);
-                    if (!muted) ensureCtx();
-                    return muted;
-                }
-            };
-        })();
-
-        // --- GAME WORLD: Pokémon-style free-roam tile map (Kenney CC0 sprites) ---
         (function () {
-            const mapEl = document.getElementById('tile-map');
-            const character = document.getElementById('character');
-            const hudIcon = document.getElementById('hud-icon');
-            const hudTitle = document.getElementById('hud-title');
-            const hudDesc = document.getElementById('hud-desc');
-            const hudAction = document.getElementById('hud-action');
-            const muteBtn = document.getElementById('ctrl-mute');
+            const desktop = document.getElementById('desktop');
+            const taskItems = document.getElementById('task-items');
+            const startBtn = document.getElementById('start-btn');
+            const startMenu = document.getElementById('start-menu');
+            const isTouch = window.matchMedia('(pointer: coarse)').matches;
+            const isMobile = () => window.innerWidth <= 640;
 
-            if (!mapEl || !character) return;
+            let zTop = 100;
+            let cascade = 0;
+            let activeWin = null;
+            const taskButtons = new Map();
 
-            const COLS = 16, ROWS = 10;
-            const T = 'tiles/'; // tile sprite folder
+            // ---------- Build chrome for every window ----------
+            document.querySelectorAll('.window').forEach((win) => {
+                const bar = document.createElement('div');
+                bar.className = 'titlebar';
+                const icon = win.dataset.img
+                    ? `<img src="${win.dataset.img}" alt="" style="border-radius:3px">`
+                    : `<svg><use href="${win.dataset.icon || '#i-doc'}"/></svg>`;
+                bar.innerHTML = `${icon}<span class="title">${win.dataset.title}</span>
+                    <button class="min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="close" title="Close" aria-label="Close">×</button>`;
+                win.prepend(bar);
 
-            const PROJECTS = {
-                openproxy: { modal: 'modal-openproxy', title: 'OpenProxy', icon: 'icons/openproxy_icon.png', fallback: '🔒', desc: "Desktop network debugging proxy combining mitmproxy's power with a sleek Electron + Vue 3 UI.", door: 'door_brick_open', color: 'var(--accent)' },
-                michord: { modal: 'modal-michord', title: 'MiChord!', icon: 'icons/michord_icon.png', fallback: '🎹', desc: 'A MIDI chord companion inspired by HiChord — play, sequence, and send chords to your MIDI setup.', door: 'door_brick_open', color: 'var(--accent-pink)' },
-                homify: { modal: 'modal-homify', title: 'Homify', icon: 'icons/homify_icon.png', fallback: '🏠', desc: 'Manage shared chores and split expenses with roommates effortlessly.', door: 'door_brick_open', color: 'var(--accent-green)' },
-                refits: { modal: 'modal-refits', title: 'Re:Fits', icon: 'icons/refit_icon.png', fallback: '👕', desc: 'A high-performance personal styling manager with local-first data syncing.', door: 'door_brick_open', color: 'var(--accent-orange)' },
-                projectv: { modal: 'modal-projectv', title: 'Project V (WIP)', icon: '', fallback: '🎮', desc: '3D Roguelike with dynamic scaling and complex ability systems.', door: 'door_brick_open', color: 'var(--accent-purple)' }
-            };
+                bar.querySelector('.min').addEventListener('click', (e) => { e.stopPropagation(); minimizeWindow(win); });
+                bar.querySelector('.max').addEventListener('click', (e) => { e.stopPropagation(); win.classList.toggle('maximized'); });
+                bar.querySelector('.close').addEventListener('click', (e) => { e.stopPropagation(); closeWindow(win); });
+                bar.addEventListener('dblclick', (e) => { if (e.target === bar || e.target.classList.contains('title')) win.classList.toggle('maximized'); });
+                win.addEventListener('pointerdown', () => focusWindow(win));
 
-            // Doors: row/col placed around the town, connected by a dirt path
-            const DOORS = [
-                { r: 2, c: 3, key: 'openproxy' },
-                { r: 2, c: 7, key: 'michord' },
-                { r: 2, c: 11, key: 'homify' },
-                { r: 7, c: 5, key: 'refits' },
-                { r: 7, c: 10, key: 'projectv' }
-            ];
+                makeDraggable(win, bar);
+            });
 
-            const grassImgs = ['grass0', 'grass0', 'grass1', 'grass0', 'grass2'];
-            const treeImgs = ['tree_pine_green', 'tree_pine_orange', 'tree_ball_green', 'tree_small_green', 'tree_small_orange'];
-
-            function buildGrid() {
-                const grid = [];
-                for (let r = 0; r < ROWS; r++) {
-                    const row = [];
-                    for (let c = 0; c < COLS; c++) {
-                        const isBorder = r === 0 || r === ROWS - 1 || c === 0 || c === COLS - 1;
-                        row.push(isBorder
-                            ? { type: 'tree', img: treeImgs[(r + c) % treeImgs.length], base: 'grass0' }
-                            : { type: 'grass', img: grassImgs[(r * 7 + c * 3) % grassImgs.length] });
+            // ---------- Window management ----------
+            function openWindow(id) {
+                const win = document.getElementById(id);
+                if (!win) return;
+                if (!win.classList.contains('open')) {
+                    win.classList.add('open');
+                    if (!win.dataset.placed) {
+                        placeWindow(win);
+                        win.dataset.placed = '1';
                     }
-                    grid.push(row);
+                    addTaskButton(win);
                 }
+                win.style.display = '';
+                focusWindow(win);
+            }
 
-                // main horizontal path
-                for (let c = 1; c < COLS - 1; c++) grid[5][c] = { type: 'path', img: 'path_dirt' };
-                // vertical connectors from top doors down to the main path
-                [3, 7, 11].forEach((c) => {
-                    grid[3][c] = { type: 'path', img: 'path_dirt' };
-                    grid[4][c] = { type: 'path', img: 'path_dirt' };
+            function placeWindow(win) {
+                const dw = desktop.clientWidth, dh = desktop.clientHeight;
+                const w = win.offsetWidth, h = win.offsetHeight;
+                const step = 26;
+                const baseX = Math.max(190, (dw - w) / 2 - 60);
+                const baseY = Math.max(20, (dh - h) / 2 - 40);
+                let x = baseX + (cascade % 8) * step;
+                let y = baseY + (cascade % 8) * step;
+                cascade++;
+                x = Math.min(Math.max(0, x), Math.max(0, dw - w));
+                y = Math.min(Math.max(0, y), Math.max(0, dh - h));
+                win.style.left = x + 'px';
+                win.style.top = y + 'px';
+            }
+
+            function focusWindow(win) {
+                if (!win || !win.classList.contains('open')) return;
+                win.style.zIndex = ++zTop;
+                document.querySelectorAll('.window').forEach((w) => w.classList.toggle('inactive', w !== win));
+                taskButtons.forEach((btn, w) => btn.classList.toggle('active', w === win));
+                activeWin = win;
+            }
+
+            function minimizeWindow(win) {
+                win.style.display = 'none';
+                win.classList.add('inactive');
+                const btn = taskButtons.get(win);
+                if (btn) btn.classList.remove('active');
+                if (activeWin === win) activeWin = null;
+            }
+
+            function closeWindow(win) {
+                win.classList.remove('open', 'maximized');
+                win.style.display = '';
+                const btn = taskButtons.get(win);
+                if (btn) { btn.remove(); taskButtons.delete(win); }
+                if (activeWin === win) {
+                    activeWin = null;
+                    // focus the top-most remaining open window
+                    let best = null, bz = -1;
+                    document.querySelectorAll('.window.open').forEach((w) => {
+                        if (w.style.display === 'none') return;
+                        const z = +w.style.zIndex || 0;
+                        if (z > bz) { bz = z; best = w; }
+                    });
+                    if (best) focusWindow(best);
+                }
+            }
+
+            function addTaskButton(win) {
+                const btn = document.createElement('button');
+                btn.className = 'task-item';
+                const icon = win.dataset.img
+                    ? `<img src="${win.dataset.img}" alt="" style="border-radius:3px">`
+                    : `<svg><use href="${win.dataset.icon || '#i-doc'}"/></svg>`;
+                btn.innerHTML = `${icon}<span>${win.dataset.title}</span>`;
+                btn.addEventListener('click', () => {
+                    if (win.style.display === 'none') { win.style.display = ''; focusWindow(win); }
+                    else if (activeWin === win) minimizeWindow(win);
+                    else focusWindow(win);
                 });
-                // vertical connectors from main path down to bottom doors
-                [5, 10].forEach((c) => {
-                    grid[6][c] = { type: 'path', img: 'path_dirt' };
+                taskItems.appendChild(btn);
+                taskButtons.set(win, btn);
+            }
+
+            function makeDraggable(win, handle) {
+                let sx, sy, ox, oy, dragging = false;
+                handle.addEventListener('pointerdown', (e) => {
+                    if (e.target.tagName === 'BUTTON' || win.classList.contains('maximized') || isMobile()) return;
+                    dragging = true;
+                    sx = e.clientX; sy = e.clientY;
+                    ox = win.offsetLeft; oy = win.offsetTop;
+                    handle.setPointerCapture(e.pointerId);
                 });
-
-                // doors
-                DOORS.forEach((d) => {
-                    const proj = PROJECTS[d.key];
-                    grid[d.r][d.c] = { type: 'door', img: proj.door, key: d.key };
+                handle.addEventListener('pointermove', (e) => {
+                    if (!dragging) return;
+                    const dw = desktop.clientWidth, dh = desktop.clientHeight;
+                    let x = ox + e.clientX - sx;
+                    let y = oy + e.clientY - sy;
+                    x = Math.min(Math.max(-win.offsetWidth + 80, x), dw - 80);
+                    y = Math.min(Math.max(0, y), dh - 24);
+                    win.style.left = x + 'px';
+                    win.style.top = y + 'px';
                 });
+                const stop = () => { dragging = false; };
+                handle.addEventListener('pointerup', stop);
+                handle.addEventListener('pointercancel', stop);
+            }
 
-                // decorative extra trees scattered in the grass (each sits on its own grass base)
-                [[2, 5], [2, 9], [7, 3], [7, 8], [7, 13], [3, 13], [6, 2], [8, 6], [1, 6]].forEach(([r, c], i) => {
-                    if (grid[r][c].type === 'grass') {
-                        grid[r][c] = { type: 'tree', img: treeImgs[i % treeImgs.length], base: grid[r][c].img };
-                    }
+            // ---------- Icons (desktop + folder views) ----------
+            function activateIcon(el) {
+                if (el.dataset.open) openWindow(el.dataset.open);
+                else if (el.dataset.href) window.open(el.dataset.href, '_blank', 'noopener');
+            }
+
+            document.querySelectorAll('.icon').forEach((el) => {
+                el.tabIndex = 0;
+                el.addEventListener('click', () => {
+                    const scope = el.closest('.list-view') || document.getElementById('icons');
+                    scope.querySelectorAll('.icon').forEach((i) => i.classList.toggle('selected', i === el));
+                    if (isTouch) activateIcon(el);
                 });
+                el.addEventListener('dblclick', () => { if (!isTouch) activateIcon(el); });
+                el.addEventListener('keydown', (e) => { if (e.key === 'Enter') activateIcon(el); });
+            });
 
-                return grid;
-            }
-
-            const grid = buildGrid();
-            const cellEls = [];
-
-            function renderMap() {
-                mapEl.style.setProperty('--map-cols', COLS);
-                mapEl.style.setProperty('--map-rows', ROWS);
-                for (let r = 0; r < ROWS; r++) {
-                    const rowEls = [];
-                    for (let c = 0; c < COLS; c++) {
-                        const cell = grid[r][c];
-                        const div = document.createElement('div');
-                        div.className = 'tile' + (cell.type === 'door' ? ' door' : '') + (cell.type === 'tree' ? ' tree' : '');
-                        div.style.gridRow = r + 1;
-                        div.style.gridColumn = c + 1;
-
-                        if (cell.type === 'tree') {
-                            // grass base underneath so the tile still reads as ground
-                            div.style.backgroundImage = `url('${T}${cell.base}.png')`;
-                            const sprite = document.createElement('div');
-                            sprite.className = 'tree-sprite';
-                            sprite.style.backgroundImage = `url('${T}${cell.img}.png')`;
-                            div.appendChild(sprite);
-                        } else {
-                            div.style.backgroundImage = `url('${T}${cell.img}.png')`;
-                        }
-
-                        if (cell.type === 'door') {
-                            const proj = PROJECTS[cell.key];
-                            div.style.setProperty('--door-color', proj.color);
-                            div.addEventListener('click', () => enterDoor(cell.key));
-
-                            const badge = document.createElement('div');
-                            badge.className = 'door-badge';
-                            badge.style.setProperty('--door-color', proj.color);
-                            if (proj.icon) {
-                                badge.innerHTML = `<img src="${proj.icon}" alt="${proj.title} icon" onerror="this.style.display='none'; this.parentNode.textContent='${proj.fallback}'" />`;
-                            } else {
-                                badge.textContent = proj.fallback;
-                            }
-                            div.appendChild(badge);
-                        }
-
-                        mapEl.appendChild(div);
-                        rowEls.push(div);
-                    }
-                    cellEls.push(rowEls);
+            desktop.addEventListener('pointerdown', (e) => {
+                if (e.target === desktop) {
+                    document.querySelectorAll('#icons .icon').forEach((i) => i.classList.remove('selected'));
+                    document.querySelectorAll('.window').forEach((w) => w.classList.add('inactive'));
+                    taskButtons.forEach((btn) => btn.classList.remove('active'));
+                    activeWin = null;
                 }
-                // keep the character element on top (appended first, so re-append last)
-                mapEl.appendChild(character);
-            }
-            renderMap();
+            });
 
-            let row = 5, col = 2; // start on the path
-            let walkTimeout;
+            // Buttons / menu items with data-open, data-close, data-href
+            document.addEventListener('click', (e) => {
+                const openEl = e.target.closest('[data-open]');
+                if (openEl && !openEl.classList.contains('icon')) { openWindow(openEl.dataset.open); closeStart(); return; }
+                const hrefEl = e.target.closest('[data-href]');
+                if (hrefEl && !hrefEl.classList.contains('icon')) { window.open(hrefEl.dataset.href, '_blank', 'noopener'); closeStart(); return; }
+                const closeEl = e.target.closest('[data-close]');
+                if (closeEl) { const w = closeEl.closest('.window'); if (w) closeWindow(w); }
+            });
 
-            function tileSizePx() {
-                return parseFloat(getComputedStyle(mapEl).getPropertyValue('--tile-size')) || 40;
-            }
-
-            function placeCharacter() {
-                const size = tileSizePx();
-                character.style.left = (col * size + size / 2) + 'px';
-                character.style.top = (row * size + size) + 'px';
-            }
-
-            function nearestDoor() {
-                let best = null, bestDist = Infinity;
-                DOORS.forEach((d) => {
-                    const dist = Math.max(Math.abs(d.r - row), Math.abs(d.c - col));
-                    if (dist < bestDist) { bestDist = dist; best = d; }
+            // ---------- Tabs ----------
+            document.querySelectorAll('.tabs').forEach((tabs) => {
+                const panelHost = tabs.parentElement;
+                tabs.querySelectorAll('.tab').forEach((tab) => {
+                    tab.addEventListener('click', () => {
+                        tabs.querySelectorAll('.tab').forEach((t) => t.classList.toggle('active', t === tab));
+                        panelHost.querySelectorAll('.tabpanel').forEach((p) => p.classList.toggle('active', p.dataset.panel === tab.dataset.tab));
+                    });
                 });
-                return best && bestDist <= 2 ? { door: best, dist: bestDist } : null;
-            }
+            });
 
-            function updateHud() {
-                const near = nearestDoor();
-                if (near) {
-                    const proj = PROJECTS[near.door.key];
-                    if (proj.icon) {
-                        hudIcon.innerHTML = `<img src="${proj.icon}" alt="${proj.title} icon" onerror="this.style.display='none'; this.parentNode.textContent='${proj.fallback}'" />`;
-                    } else {
-                        hudIcon.textContent = proj.fallback;
-                    }
-                    hudTitle.textContent = proj.title;
-                    hudDesc.textContent = proj.desc;
-                    hudAction.textContent = near.dist === 0 ? '▶ Press ENTER to inspect' : '▶ Walk onto the door to enter';
-                } else {
-                    hudIcon.textContent = '🕹️';
-                    hudTitle.textContent = 'Exploring the town...';
-                    hudDesc.textContent = 'Walk around and find a glowing door to check out a project!';
-                    hudAction.textContent = '▶ Use the D-pad or arrow keys';
-                }
-            }
+            // ---------- Gallery image preview ----------
+            const viewerImg = document.getElementById('viewer-img');
+            const viewerWin = document.getElementById('win-viewer');
+            document.querySelectorAll('.gallery img').forEach((img) => {
+                img.addEventListener('click', () => {
+                    viewerImg.src = img.src;
+                    viewerWin.querySelector('.title').textContent = (img.alt || 'Image') + ' - Image Preview';
+                    openWindow('win-viewer');
+                    const center = () => {
+                        const dw = desktop.clientWidth, dh = desktop.clientHeight;
+                        viewerWin.style.left = Math.max(0, (dw - viewerWin.offsetWidth) / 2) + 'px';
+                        viewerWin.style.top = Math.max(0, (dh - viewerWin.offsetHeight) / 2) + 'px';
+                    };
+                    if (viewerImg.complete) center(); else viewerImg.onload = center;
+                });
+            });
 
-            function enterDoor(key) {
-                const proj = PROJECTS[key];
-                if (!proj) return;
-                SoundFX.select();
-                openModal(proj.modal);
-            }
+            // ---------- Start menu ----------
+            function closeStart() { startMenu.classList.remove('open'); startBtn.classList.remove('pressed'); }
+            startBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                startMenu.classList.toggle('open');
+                startBtn.classList.toggle('pressed', startMenu.classList.contains('open'));
+            });
+            document.addEventListener('pointerdown', (e) => {
+                if (!startMenu.contains(e.target) && !startBtn.contains(e.target)) closeStart();
+            });
 
-            function tryMove(dRow, dCol) {
-                const newRow = row + dRow;
-                const newCol = col + dCol;
+            // ---------- Shut down ----------
+            const shutdown = document.getElementById('shutdown');
+            document.getElementById('shutdown-item').addEventListener('click', () => {
+                closeStart();
+                shutdown.classList.add('open');
+            });
+            shutdown.addEventListener('click', () => location.reload());
 
-                if (dCol > 0) character.classList.remove('facing-left');
-                if (dCol < 0) character.classList.add('facing-left');
-
-                if (newRow < 0 || newRow >= ROWS || newCol < 0 || newCol >= COLS) {
-                    SoundFX.bump();
-                    return false;
-                }
-
-                const target = grid[newRow][newCol];
-
-                if (target.type === 'tree') {
-                    SoundFX.bump();
-                    return false;
-                }
-
-                if (target.type === 'door') {
-                    updateHudForDoor(target.key);
-                    enterDoor(target.key);
-                    return false;
-                }
-
-                row = newRow;
-                col = newCol;
-                SoundFX.step();
-                character.classList.add('walking');
-                clearTimeout(walkTimeout);
-                walkTimeout = setTimeout(() => character.classList.remove('walking'), 300);
-                placeCharacter();
-                updateHud();
-                return true;
-            }
-
-            function updateHudForDoor(key) {
-                const proj = PROJECTS[key];
-                if (proj.icon) {
-                    hudIcon.innerHTML = `<img src="${proj.icon}" alt="${proj.title} icon" onerror="this.style.display='none'; this.parentNode.textContent='${proj.fallback}'" />`;
-                } else {
-                    hudIcon.textContent = proj.fallback;
-                }
-                hudTitle.textContent = proj.title;
-                hudDesc.textContent = proj.desc;
-                hudAction.textContent = '▶ Press ENTER to inspect';
-            }
-
-            function openCurrent() {
-                const near = nearestDoor();
-                if (near && near.dist === 0) enterDoor(near.door.key);
-            }
-
-            // --- Hold-to-move support (keyboard auto-repeat + press-and-hold D-pad) ---
-            const MOVE_REPEAT_DELAY = 300; // ms before repeat kicks in
-            const MOVE_REPEAT_RATE = 260;  // ms between repeated moves while held
-            let repeatTimer = null;
-            let repeatInterval = null;
-            let activeMoveKey = null;
-
-            function startRepeatMove(dRow, dCol, moveKey) {
-                if (activeMoveKey === moveKey) return; // already moving this direction
-                stopRepeatMove();
-                activeMoveKey = moveKey;
-                tryMove(dRow, dCol);
-                repeatTimer = setTimeout(() => {
-                    repeatInterval = setInterval(() => {
-                        const moved = tryMove(dRow, dCol);
-                        if (!moved) stopRepeatMove(moveKey); // hit a wall or entered a door — stop auto-repeat
-                    }, MOVE_REPEAT_RATE);
-                }, MOVE_REPEAT_DELAY);
-            }
-
-            function stopRepeatMove(moveKey) {
-                if (moveKey && activeMoveKey !== moveKey) return;
-                clearTimeout(repeatTimer);
-                clearInterval(repeatInterval);
-                repeatTimer = null;
-                repeatInterval = null;
-                activeMoveKey = null;
-            }
-
+            // ---------- Keyboard ----------
             document.addEventListener('keydown', (e) => {
-                const anyModalOpen = document.querySelector('.modal-overlay[style*="flex"]');
-                if (anyModalOpen) return;
-                if (e.repeat) { e.preventDefault(); return; } // we handle repeats ourselves
-
-                if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
-                    e.preventDefault(); startRepeatMove(0, -1, 'left');
-                } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
-                    e.preventDefault(); startRepeatMove(0, 1, 'right');
-                } else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
-                    e.preventDefault(); startRepeatMove(-1, 0, 'up');
-                } else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') {
-                    e.preventDefault(); startRepeatMove(1, 0, 'down');
-                } else if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault(); openCurrent();
+                if (e.key === 'Escape') {
+                    if (startMenu.classList.contains('open')) closeStart();
+                    else if (activeWin) closeWindow(activeWin);
                 }
             });
 
-            document.addEventListener('keyup', (e) => {
-                if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') stopRepeatMove('left');
-                else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') stopRepeatMove('right');
-                else if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') stopRepeatMove('up');
-                else if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') stopRepeatMove('down');
-            });
-
-            // Stop movement if the window/tab loses focus while a key is held
-            window.addEventListener('blur', () => stopRepeatMove());
-
-            const ctrlUp = document.getElementById('ctrl-up');
-            const ctrlDown = document.getElementById('ctrl-down');
-            const ctrlLeft = document.getElementById('ctrl-left');
-            const ctrlRight = document.getElementById('ctrl-right');
-            const ctrlSelect = document.getElementById('ctrl-select');
-
-            function wireHoldButton(btn, dRow, dCol, moveKey) {
-                if (!btn) return;
-                const start = (ev) => { ev.preventDefault(); startRepeatMove(dRow, dCol, moveKey); };
-                const stop = () => stopRepeatMove(moveKey);
-                btn.addEventListener('mousedown', start);
-                btn.addEventListener('touchstart', start, { passive: false });
-                btn.addEventListener('mouseup', stop);
-                btn.addEventListener('mouseleave', stop);
-                btn.addEventListener('touchend', stop);
-                btn.addEventListener('touchcancel', stop);
+            // ---------- Clock ----------
+            const clock = document.getElementById('clock');
+            function tick() {
+                const d = new Date();
+                let h = d.getHours();
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                h = h % 12 || 12;
+                clock.textContent = `${h}:${String(d.getMinutes()).padStart(2, '0')} ${ampm}`;
             }
+            tick();
+            setInterval(tick, 10000);
 
-            wireHoldButton(ctrlUp, -1, 0, 'up');
-            wireHoldButton(ctrlDown, 1, 0, 'down');
-            wireHoldButton(ctrlLeft, 0, -1, 'left');
-            wireHoldButton(ctrlRight, 0, 1, 'right');
-            if (ctrlSelect) ctrlSelect.addEventListener('click', openCurrent);
+            // ---------- Boot ----------
+            const boot = document.getElementById('boot');
+            let booted = false;
+            const finishBoot = () => {
+                if (booted) return;
+                booted = true;
+                boot.classList.add('hide');
+                openWindow('win-welcome');
+            };
+            setTimeout(finishBoot, 1300);
+            boot.addEventListener('click', finishBoot);
 
-            if (muteBtn) {
-                muteBtn.textContent = SoundFX.isMuted() ? '🔇 MUTED' : '🔊 SOUND';
-                muteBtn.addEventListener('click', () => {
-                    const muted = SoundFX.toggleMute();
-                    muteBtn.textContent = muted ? '🔇 MUTED' : '🔊 SOUND';
+            // Keep windows inside the desktop on resize
+            window.addEventListener('resize', () => {
+                document.querySelectorAll('.window.open').forEach((win) => {
+                    const dw = desktop.clientWidth, dh = desktop.clientHeight;
+                    win.style.left = Math.min(win.offsetLeft, Math.max(0, dw - 80)) + 'px';
+                    win.style.top = Math.min(win.offsetTop, Math.max(0, dh - 24)) + 'px';
                 });
-            }
-
-            document.querySelectorAll('.close-modal').forEach((btn) => {
-                btn.addEventListener('click', () => SoundFX.close());
             });
-
-            window.addEventListener('resize', placeCharacter);
-            window.addEventListener('load', placeCharacter);
-
-            updateHud();
-            placeCharacter();
         })();
     </script>
 </body>
