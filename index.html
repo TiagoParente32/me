@@ -857,7 +857,7 @@
                 <div class="tabpanel" data-panel="experience">
                     <p>Five shipped or in-progress projects live in <b>My Projects</b>:</p>
                     <ul class="features">
-                        <li><b>OpenProxy</b> - open source desktop network debugging proxy</li>
+                        <li><b>OpenProxy</b> - open source HTTP(S) debugging proxy for macOS, Windows and Linux</li>
                         <li><b>MiChord!</b> - MIDI chord instrument for Android</li>
                         <li><b>Homify</b> - roommate chores &amp; expenses, on Google Play</li>
                         <li><b>Layer</b> - offline-first wardrobe manager</li>
@@ -893,19 +893,22 @@
             <div class="window-body">
                 <div class="project-header">
                     <img src="icons/openproxy_icon.png" alt="OpenProxy icon">
-                    <div><h2>OpenProxy</h2><small>Desktop Application · Electron + Vue 3 · Open Source</small></div>
+                    <div><h2>OpenProxy</h2><small>Desktop Application · Electron + Vue 3 + mitmproxy · macOS / Windows / Linux · GPLv3</small></div>
                 </div>
-                <p>OpenProxy is a fast, modern network debugging proxy built for developers. It combines the raw power of mitmproxy with a sleek, native-feeling desktop UI. Perfect for inspecting HTTP/HTTPS traffic, mocking API responses, rewriting URLs, and testing network conditions.</p>
+                <p>OpenProxy is a fast, lightweight HTTP(S) debugging proxy with a native desktop UI: the power of mitmproxy wrapped in an Electron + Vue 3 app. Inspect traffic, mock API responses, rewrite routes to localhost, throttle the network, and set up Android emulators, physical devices, iOS and browsers in a couple of clicks — without the bloat of traditional Java-based proxies.</p>
                 <fieldset>
                     <legend>Key Features</legend>
                     <ul class="features">
                         <li><b>Traffic Interception</b> - view, inspect, and filter HTTP/HTTPS requests in real time</li>
                         <li><b>Map Local (Mocking)</b> - trick your app into receiving custom JSON/HTML responses</li>
-                        <li><b>Map Remote (Rewrites)</b> - transparently route URLs to localhost dev servers</li>
-                        <li><b>Live Breakpoints</b> - pause requests mid-flight, edit headers and bodies</li>
-                        <li><b>VPN Mode</b> - route device traffic through a WireGuard tunnel</li>
-                        <li><b>Smart Android Setup</b> - 1-click ADB integration with auto-update</li>
-                        <li><b>Network Throttling</b> - simulate various network conditions</li>
+                        <li><b>Map Remote (Rewrites)</b> - transparently route production URLs to localhost dev servers</li>
+                        <li><b>Live Breakpoints</b> - pause requests or responses mid-flight, edit headers and bodies, release</li>
+                        <li><b>VPN Mode</b> - route Android and iOS device traffic through a WireGuard tunnel, no manual proxy setup</li>
+                        <li><b>Smart Android Setup</b> - 1-click ADB integration that installs system or user certificates on emulators</li>
+                        <li><b>One-click CA Trust</b> - installs the mitmproxy certificate on the host so browsers and CLI tools just work</li>
+                        <li><b>Network Throttling & Cache Busting</b> - simulate Fast/Slow 3G, strip caching headers on demand</li>
+                        <li><b>AI Agent Integration (MCP)</b> - let Claude Code, Cursor or any MCP client read captured traffic and mock endpoints</li>
+                        <li><b>Auto-Update</b> - checks for new releases on startup and updates itself in one click</li>
                     </ul>
                 </fieldset>
                 <fieldset>
@@ -916,7 +919,8 @@
                     </div>
                 </fieldset>
                 <div class="actions">
-                    <a class="btn primary" href="https://github.com/TiagoParente32/open-proxy" target="_blank" rel="noopener">View on GitHub</a>
+                    <a class="btn" href="https://github.com/TiagoParente32/open-proxy" target="_blank" rel="noopener">View on GitHub</a>
+                    <a class="btn primary" href="https://github.com/TiagoParente32/open-proxy/releases/latest" target="_blank" rel="noopener">Download</a>
                     <button data-close>Close</button>
                 </div>
             </div>
